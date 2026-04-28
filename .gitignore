@@ -20,7 +20,7 @@ site_build
 .venv
 
 test_pred.py
-models
+src/models
 # vim temporary files
 *~
 .*.sw?
