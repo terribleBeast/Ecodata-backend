@@ -1,19 +1,35 @@
-from pathlib import Path
-from shutil import copyfileobj
-from time import time
+import csv
+from contextlib import asynccontextmanager
 
 import numpy as np
-from fastapi import FastAPI, UploadFile
+from fastapi import APIRouter, FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.status import HTTP_201_CREATED
-from torch import cuda
+from starlette.responses import JSONResponse
 
-from models.models import models
-from src.mock_data import User, user_db
-from src.predictions import get_prediction
+from src.api import router
+from src.database.session import PostgresSession
 
-models_dir = r"D:\projects\EcoData\backend\models"
-app = FastAPI()
+# from src.predictions import get_prediction
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    database_url = "postgresql+asyncpg://postgres:@localhost:5432/ecodata"
+    await PostgresSession.init(database_url)
+
+    yield
+
+    # Shutdown
+    await PostgresSession.close()
+
+
+models_dir = r"D:\projects\EcoData\backend\src\models"
+app = FastAPI(lifespan=lifespan)
+api = APIRouter(prefix="/api/v1")
+
+api.include_router(router)
+app.include_router(api)
 origins = [
     # "http://localhost.tiangolo.com",
     # "https://localhost.tiangolo.com",
@@ -30,54 +46,9 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def hello():
-    return cuda.current_device()
+@app.get("/research/{research_id}/predictions")
+def post_prediction(research_id: int):
+    with open(r"D:\Downloads\result (8).csv", "r", encoding="utf-8") as file:
+        data = csv.reader(file)
 
-
-@app.post("/upload_file")
-def upload_file(files: list[UploadFile]):
-    return {"filenames": [file.filename for file in files]}
-
-
-@app.post("/models/")
-def add_new_model(genus: str, sort_name: str, model_file: UploadFile) -> dict[str, str]:
-    model_file_extention = ".pth"
-    if Path(model_file.filename).suffix.lower() != model_file_extention:
-        return {"message": "The model file must have 'pth' extention"}
-    model_name = models_dir + "/" + str(int(time())) + model_file_extention
-    models.setdefault(genus, [{"name": sort_name, "path": model_name}])
-    print(model_name)
-    with open(model_name, "wb") as file:
-        copyfileobj(model_file.file, file)
-    return {"message": f"The Model is saved with name {model_name}"}
-
-
-@app.get("/models/")
-def get_names_models():
-    return models
-
-
-@app.post("/predictions")
-def post_prediction(image: UploadFile):
-    img_data = image.file.read()
-    img_np = np.fromstring(string=img_data, dtype=np.uint8)
-    types = [
-        "Феникс Уральское",
-        "Уральское наливное",
-        "Сувенир Алтая",
-        "Подарок садоводам",
-        "Заветное",
-        "Жебровское",
-        "Жар-птица",
-        "Алтайское румяное",
-        "Алтайское зимнее",
-        "Алтайская красавица",
-    ]
-    predictions: list[dict[str, str | float]] = []
-    for type in types:
-        predictions.append({"classifier": type, "probability": get_prediction(img_np)})
-    return {
-        "predictions": predictions,
-        "Access-Control-Allow-Origin": "http://localhost:3000/",
-    }
+        return JSONResponse([*data])
