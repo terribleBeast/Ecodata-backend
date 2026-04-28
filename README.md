@@ -1,0 +1,32 @@
+Plan
+- [ ] FastAPI
+  - [ ] Endpoints
+    - [ ] User
+      - [ ] Log in
+      - [ ] Sign in
+      - [ ] Edit profile
+      - [ ] Safe session between request (middleware)
+    - [ ] Analyzer
+      - [x] Download img
+      - [x] Processing on server (TOP)
+      - [ ] Parallel processing
+    - [ ] Researches
+    - [ ] Researchers
+    - [ ] Plants
+    - [ ] Laboratories
+    - [ ] Locations
+  - [ ] Error handling
+  - [ ] Middleware for response
+  - [ ] Optimization 
+    - [ ] Try to decrease size of module (cause: pytorch)
+- [ ] DB
+  - [ ] Fix the role model (admin, user?)
+  - [ ] Create init sql file
+  - [ ] Add neural_model entity
+  - [ ] Add classification result entity
+- [ ] Testing
+  - [ ] Cold
+  - [ ] Hot
+  - [ ] Integration tests
+  - [ ] Mocks
+- [ ] Docker
