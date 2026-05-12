@@ -8,4 +8,4 @@ run: run_db run_backend
 run_backend:
 	uvicorn src.main:app --host $(HOST) --port $(PORT) --reload
 run_db:
-	pg_ctl.exe -D $(DB) $(COMMAND) -l $(LOGFILE_DB)
+	pg_ctl.exe -D $(DB) -c $(COMMAND) -l $(LOGFILE_DB)

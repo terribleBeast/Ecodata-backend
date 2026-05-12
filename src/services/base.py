@@ -1,23 +1,24 @@
-from typing import Any, TypeVar
+from typing import Any, Generic, TypeVar
 from uuid import UUID as PyUUID
 
 from pydantic import BaseModel
 
-from src.database.repository import SqlRepo
+from src.database.dependencies import get_plant_repo
+from src.database.repository import PlantRepo, SqlRepo
 
 Repo = TypeVar("Repo", bound=SqlRepo)
 
 
-class BaseService:
+class BaseService(Generic[Repo]):
+    # class BaseService:
     def __init__(self, repo: Repo):
-        print(repo)
         self._repo = repo
 
     async def get_all(self):
         return await self._repo.get_all()
 
     async def get_one(self, id):
-        return await self._repo.get(id)
+        return await self._repo.get_by_id(id)
 
     async def create(self, item: BaseModel):
         identity = self._repo.new_id()

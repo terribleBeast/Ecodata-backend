@@ -1,8 +1,8 @@
 from uuid import UUID as PyUUID
 from uuid import uuid4
 
-from sqlalchemy import UUID, ForeignKey, ForeignKeyConstraint, Integer, String
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import UUID, ForeignKey, String
+from sqlalchemy.orm import Mapped, mapped_column
 
 from src.database.models.base import BaseSqlModel
 
@@ -20,5 +20,5 @@ class NeuralModel(BaseSqlModel):
         primary_key=True,
         default=uuid4,
     )
-    plant_id: Mapped[PyUUID] = mapped_column(UUID, ForeignKey("Plant.id"))
+    plant_id: Mapped[PyUUID] = mapped_column(UUID, ForeignKey("plants.plant_id"))
     model_name: Mapped[str] = mapped_column(String)

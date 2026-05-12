@@ -15,6 +15,15 @@ class SqlRepo:
     def new_id() -> UUID:
         return uuid4()
 
+    async def get_by_id(self, id: int):
+        try:
+            stmt = select(self.model).where(self.model.id == id)
+            result = await self.session.execute(stmt)
+            return result.scalar_one()
+        except Exception as e:
+            await self.session.rollback()
+            raise e
+
     async def get_all(self):
         try:
             stmt = select(self.model)

@@ -4,14 +4,16 @@ from typing import Annotated
 
 from sqlalchemy import DateTime, Integer, MetaData, String, func
 from sqlalchemy.ext.declarative import as_declarative
-from sqlalchemy.orm import Mapped, declared_attr, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column
 
 
 @as_declarative()
 class BaseSqlModel:
-    @declared_attr
-    def __tablename__(cls) -> str:
-        return re.sub(r"(?<!^)(?=[A-Z])", "_", cls.__name__).lower()
+    __abstract__ = True
+
+    # @classmethod
+    # def __tablename__(cls) -> str:
+    #     return re.sub(r"(?<!^)(?=[A-Z])", "_", cls.__name__).lower()
 
     metadata = MetaData(
         naming_convention={

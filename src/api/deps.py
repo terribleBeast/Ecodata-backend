@@ -2,7 +2,6 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database.dependencies import get_db
-from src.database.models.neural_models import NeuralModel
 from src.database.repository import NeuralModelRepo, PlantRepo
 from src.services.base import BaseService
 

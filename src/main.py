@@ -1,8 +1,8 @@
 import csv
 from contextlib import asynccontextmanager
 
-import numpy as np
-from fastapi import APIRouter, FastAPI, UploadFile
+from fastapi import APIRouter, FastAPI, Request
+from fastapi.exceptions import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 
@@ -52,3 +52,15 @@ def post_prediction(research_id: int):
         data = csv.reader(file)
 
         return JSONResponse([*data])
+
+
+@app.exception_handler(HTTPException)
+async def validation_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code, content={"message": "I'm an exception"}
+    )
+
+
+@app.get("/exc")
+async def exception():
+    raise HTTPException(status_code=400)
