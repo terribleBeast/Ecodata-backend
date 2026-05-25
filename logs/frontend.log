@@ -1,0 +1,20 @@
+2026-05-13 15:29:25 [DEBUG] frontend: string | meta: string
+2026-05-13 15:29:52 [INFO] frontend: string | meta: string
+2026-05-13 15:30:14 [WARNING] frontend: string | meta: string
+2026-05-13 15:30:16 [ERROR] frontend: string | meta: string
+2026-05-13 15:30:19 [CRITICAL] frontend: string | meta: string
+2026-05-13 15:31:09 [CRITICAL] frontend: string | meta: string
+2026-05-13 15:31:14 [CRITICAL] frontend: string | meta: string
+2026-05-13 15:31:20 [CRITICAL] frontend: string | meta: string
+2026-05-13 15:31:29 [CRITICAL] frontend: string | meta: string
+2026-05-13 15:39:22 [DEBUG] frontend: User undefined undefined log in 
+2026-05-13 15:39:49 [DEBUG] frontend: User undefined undefined log in 
+2026-05-13 15:41:15 [DEBUG] frontend: User undefined admin344443@mail.com log in 
+2026-05-13 15:41:17 [DEBUG] frontend: User undefined admin344443@mail.com log in 
+2026-05-13 15:43:52 [DEBUG] frontend: User undefined ascas@afm.com log in 
+2026-05-13 15:45:25 [DEBUG] frontend: User undefined ascas@afm.com log in 
+2026-05-13 15:46:54 [DEBUG] frontend: User undefined ascas@afm.com log in 
+2026-05-13 15:48:45 [DEBUG] frontend: User undefined ascas@afm.com log in 
+2026-05-13 15:48:47 [DEBUG] frontend: User undefined ascas@afm.com log in 
+2026-05-13 15:49:01 [DEBUG] frontend: User undefined ascas@afm.com log in 
+2026-05-13 15:49:02 [DEBUG] frontend: User undefined ascas@afm.com log in 

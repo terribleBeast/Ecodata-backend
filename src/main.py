@@ -1,5 +1,6 @@
 import csv
 from contextlib import asynccontextmanager
+from logging.config import dictConfig
 
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.exceptions import HTTPException
@@ -8,8 +9,9 @@ from starlette.responses import JSONResponse
 
 from src.api import router
 from src.database.session import PostgresSession
+from src.utils.logger import log_config
 
-# from src.predictions import get_prediction
+dictConfig(log_config)
 
 
 @asynccontextmanager
@@ -34,7 +36,7 @@ origins = [
     # "http://localhost.tiangolo.com",
     # "https://localhost.tiangolo.com",
     "http://localhost",
-    "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 app.add_middleware(
@@ -61,6 +63,14 @@ async def validation_exception_handler(request: Request, exc: HTTPException):
     )
 
 
-@app.get("/exc")
-async def exception():
-    raise HTTPException(status_code=400)
+# @app.get("/exc")
+# async def exception():
+#     raise HTTPException(status_code=400)
+
+
+@app.post("/api/v1/user/login/")
+async def loginUser():
+
+    user = {"id": 1, "name": "Alex", "surname": "Doe", "patronymic": "Don"}
+
+    return JSONResponse({"data": user, "token": "1234"})

@@ -7,6 +7,7 @@ requires-python = ">=3.10"
 dependencies = [
     "asyncpg>=0.31.0",
     "fastapi>=0.136.0",
+    "loguru>=0.7.3",
     "numpy==1.26.4",
     "python-multipart>=0.0.26",
     "torch",
@@ -14,9 +15,15 @@ dependencies = [
     "uvicorn>=0.44.0",
 ]
 
+
 [tool.uv.sources]
-torch = { path = "../../../Downloads/torch-2.0.1+cu117-cp310-cp310-win_amd64.whl" }
-torchvision = { path = "../../../Downloads/torchvision-0.15.2+cu117-cp310-cp310-win_amd64.whl" }
+torch = { index = "pytorch-cu117" }
+torchvision = { index = "pytorch-cu117" }
+
+[[tool.uv.index]]
+name = "pytorch-cu117"
+url = "https://download.pytorch.org/whl/cu117"
+explicit = true
 
 [dependency-groups]
 dev = [
