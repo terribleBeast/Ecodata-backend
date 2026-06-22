@@ -14,10 +14,28 @@ from collections import OrderedDict
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from loguru import logger
 from src.features.analyzer.ws_session import WsBatchSession
+from src.features.auth.service import decode_access_token
 from src.shared.database import PostgresSession
 from starlette.websockets import WebSocketState
 
 router = APIRouter()
+
+
+async def _authenticate_ws(ws: WebSocket) -> dict | None:
+    """Extract and validate Bearer token from WebSocket handshake headers.
+
+    Returns decoded claims on success, or closes the WebSocket with 4001
+    (unauthorized) and returns None.
+    """
+    auth_header = ws.headers.get("authorization")  # ASGI lowercases headers
+    if not auth_header or not auth_header.startswith("Bearer "):
+        await ws.close(code=4001, reason="Authentication required")
+        return None
+    try:
+        return decode_access_token(auth_header[7:])
+    except Exception:
+        await ws.close(code=4001, reason="Invalid or expired token")
+        return None
 
 
 @router.websocket("/analyzer/ws/{genus_id}")
@@ -25,17 +43,11 @@ async def batch_classification_ws(
     ws: WebSocket,
     genus_id: str,
 ) -> None:
-    """Classify a batch of images against all classifiers in a genus.
-
-    Parameters
-    ----------
-    ws : WebSocket
-        Accepted after successful genus/model lookup.
-    genus_id : str
-        UUID of the genus (e.g. ``"550e8400-e29b-41d4-a716-446655440000"``).
-    """
+    claims = await _authenticate_ws(ws)
+    if claims is None:
+        return
     await ws.accept()
-    logger.info("WS connected genus_id={}", genus_id)
+    logger.info("WS connected genus_id={} user={}", genus_id, claims.get("username"))
 
     try:
         async with await PostgresSession.get_session() as db:
@@ -79,7 +91,7 @@ async def batch_classification_ws(
                 return
 
             # ── Preload models into cache ────────────────────────────
-            from src.features.neural_model.engine import model_cache
+            from src.features.analyzer.engine import model_cache
 
             for model_name in model_map.values():
                 try:
