@@ -30,3 +30,23 @@ Plan
   - [ ] Integration tests
   - [ ] Mocks
 - [ ] Docker
+
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
+
+app = FastAPI()
+
+# Монтируем папку со статикой React
+app.mount("/static", StaticFiles(directory="frontend/dist"), name="static")
+
+# Корневой маршрут отдаёт index.html
+@app.get("/")
+async def serve_frontend():
+    return FileResponse("frontend/dist/index.html")
+
+# Остальные ваши API-эндпоинты
+@app.get("/api/v1/studies")
+async def get_studies():
+    return [{"id": 1, "name": "Исследование 1"}]

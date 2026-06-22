@@ -1,0 +1,123 @@
+2026-06-11 21:07:21 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:07:37 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:08:56 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:09:58 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:10:07 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:10:20 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:10:28 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:16:39 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:16:53 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:17:08 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:17:48 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:19:07 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:19:45 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:20:25 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:24:55 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:27:20 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:27:30 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:28:18 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:28:44 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:30:11 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 21:34:54 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-11 21:37:59 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-11 22:25:22 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-12 23:05:29 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-12 23:09:00 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-12 23:09:36 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-12 23:14:41 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-12 23:16:24 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-12 23:16:44 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 21:44:02 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 21:53:22 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 21:53:38 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 21:55:19 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 21:55:26 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 21:57:20 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-16 21:59:34 [INFO] app: Client inactive — auto-done genus='0c0d2e1a-a061-4452-906d-b3011f3f402c'
+2026-06-16 22:13:17 [INFO] app: Client inactive — auto-done genus='0c0d2e1a-a061-4452-906d-b3011f3f402c'
+2026-06-16 22:13:17 [INFO] app: Drain genus='0c0d2e1a-a061-4452-906d-b3011f3f402c' 1 images
+2026-06-16 22:13:47 [INFO] app: Drain genus='0c0d2e1a-a061-4452-906d-b3011f3f402c' 1 images
+2026-06-16 22:16:53 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 22:20:34 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 22:36:54 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 22:38:27 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 22:38:44 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 22:41:14 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 22:45:21 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-16 22:46:33 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-16 22:46:43 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 13:35:57 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:37:22 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:38:04 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:39:17 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:40:38 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:40:51 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:41:50 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:42:33 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 13:43:21 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:43:53 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:44:12 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:44:57 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:45:14 [INFO] app: <starlette.middleware.base._StreamingResponse object at 0x0000023150641B10>
+2026-06-17 13:46:18 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:49:56 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:51:06 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:51:12 [INFO] app: <starlette.middleware.base._StreamingResponse object at 0x0000022D7CAA1B70>
+2026-06-17 13:52:42 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:54:22 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:54:38 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:56:39 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:57:13 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:57:30 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:59:24 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 13:59:51 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 14:01:09 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:01:18 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:01:34 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:01:43 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:02:33 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:03:40 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:04:31 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:04:57 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 14:06:13 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:06:35 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:06:46 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:07:29 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:07:37 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:07:49 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:08:22 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:09:47 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:11:38 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:12:51 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:14:42 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:14:51 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:15:26 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:20:25 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:20:34 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:21:18 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:23:53 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:24:07 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:24:26 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:25:18 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:26:10 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:29:22 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:29:45 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:30:10 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:30:45 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:31:56 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:34:16 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:37:55 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:38:32 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:39:21 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:39:42 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 14:40:11 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:40:33 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 14:41:02 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:41:16 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 14:42:35 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 14:44:08 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-17 15:49:49 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 22:11:16 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-17 23:42:35 [INFO] app: Cached model: D:\projects\EcoData\backend\artifacts\models\1781188435.pth  (cache size: 1/2)
+2026-06-22 10:54:46 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-22 10:56:54 [INFO] app: LRUModelCache cleared — all models evicted from GPU

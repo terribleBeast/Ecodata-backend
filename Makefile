@@ -2,8 +2,8 @@ HOST ?= localhost
 PORT ?= 8000
 DB ?= D:\projects\EcoData\ecodata.db
 LOGFILE_DB ?= D:\projects\EcoData\logfile
+USERNAME ?= "postgres"
 
-run: run_db run_backend COMMAND=start
 # stop:
 
 # stop_backend:
@@ -11,10 +11,9 @@ run: run_db run_backend COMMAND=start
 stop_db:
 	pg_ctl.exe -D $(DB) -c stop
 
-run_bd:
-	uvicorn src.main:app --host $(HOST) --port $(PORT)
-
-run_backend:
+run:
 	uvicorn src.main:app --host $(HOST) --port $(PORT) --reload
 run_db:
 	pg_ctl.exe -D $(DB) -c $(COMMAND) -l $(LOGFILE_DB)
+init_db:
+	pg_ctl.exe init -D $(DB)
