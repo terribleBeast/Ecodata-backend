@@ -26,7 +26,7 @@ class BaseService(Generic[Repo]):
         return identity
 
     async def update(self, id: PyUUID, item: BaseModel):
-        await self._repo.update(id, item.model_dump())
+        await self._repo.update(id, item.model_dump(exclude_unset=True))
         return id
 
     async def delete(self, id: PyUUID):
