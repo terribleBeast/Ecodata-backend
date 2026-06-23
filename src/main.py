@@ -13,7 +13,15 @@ from src.features.analyzer.router import router as analyzer_router
 from src.features.analyzer.ws_router import router as analyzer_ws_router
 from src.features.auth.router import roles_router, users_router
 from src.features.auth.router import router as auth_router
+from src.features.biochemistry.router import (
+    analyses_router,
+    indicators_router,
+    laboratories_router,
+    values_router,
+)
+from src.features.files.router import files_router, images_router
 from src.features.jobs.router import router as jobs_router
+from src.features.leaves.router import leaf_artifacts_router, leaves_router
 from src.features.locations.router import (
     addresses_router,
     countries_router,
@@ -26,9 +34,21 @@ from src.features.locations.router import (
     streets_router,
 )
 from src.features.logs.router import router as logs_router
+from src.features.morphology.router import (
+    leaf_morph_values_router,
+    measurement_units_router,
+    morphological_features_router,
+)
 from src.features.organizations.router import org_type_router
 from src.features.organizations.router import router as organizations_router
-from src.features.plants.router import router as plant_router
+from src.features.plants.router import (
+    leaf_blade_types_router,
+    location_on_plant_router,
+    plant_descriptions_router,
+    plant_life_forms_router,
+    plants_router,
+    side_of_the_world_router,
+)
 from src.features.research.router import router as research_router
 from src.features.researchers.router import router as researchers_router
 from src.features.taxonomy.router import genera_router, species_router
@@ -51,12 +71,10 @@ async def lifespan(app: FastAPI):
 
     await PostgresSession.close()
     model_cache.clear()
-    inference_executor.shutdown(wait=True)
+    inference_executor.shutdown(wait=True)      
 
 
 app = FastAPI(lifespan=lifespan)
-
-# ── Middleware (order matters: last added = outermost) ────────
 
 app.add_middleware(AuthMiddleware)
 
@@ -68,24 +86,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── API v1 ────────────────────────────────────────────────────
-
 _bearer = HTTPBearer(auto_error=False)
-
 api_router = APIRouter(prefix="/api/v1")
 
-# Public — no bearer scheme declared (login/register don't need a token)
+# ── Public (no auth scheme declared) ──────────────────────────
+
 api_router.include_router(auth_router)
 api_router.include_router(roles_router)
 api_router.include_router(users_router)
+api_router.include_router(species_router)
+api_router.include_router(genera_router)
+api_router.include_router(logs_router)
 
-# Reads public, writes require auth.
-# HTTPBearer(auto_error=False) declares the scheme to OpenAPI natively
-# so Swagger shows the Authorize button on these endpoints without
-# actually enforcing anything (enforcement is done by require_auth_for_writes).
+# ── Reads public, writes require auth ─────────────────────────
+
 _read_public = [Depends(require_auth_for_writes), Depends(_bearer)]
 
-api_router.include_router(plant_router, dependencies=_read_public)
+api_router.include_router(plants_router, dependencies=_read_public)
+api_router.include_router(plant_life_forms_router, dependencies=_read_public)
+api_router.include_router(leaf_blade_types_router, dependencies=_read_public)
+api_router.include_router(plant_descriptions_router, dependencies=_read_public)
+api_router.include_router(side_of_the_world_router, dependencies=_read_public)
+api_router.include_router(location_on_plant_router, dependencies=_read_public)
 api_router.include_router(research_router, dependencies=_read_public)
 api_router.include_router(researchers_router, dependencies=_read_public)
 api_router.include_router(jobs_router, dependencies=_read_public)
@@ -100,18 +122,23 @@ api_router.include_router(streets_router, dependencies=_read_public)
 api_router.include_router(house_numbers_router, dependencies=_read_public)
 api_router.include_router(addresses_router, dependencies=_read_public)
 api_router.include_router(locations_router, dependencies=_read_public)
+api_router.include_router(files_router, dependencies=_read_public)
+api_router.include_router(images_router, dependencies=_read_public)
+api_router.include_router(leaves_router, dependencies=_read_public)
+api_router.include_router(leaf_artifacts_router, dependencies=_read_public)
+api_router.include_router(measurement_units_router, dependencies=_read_public)
+api_router.include_router(morphological_features_router, dependencies=_read_public)
+api_router.include_router(leaf_morph_values_router, dependencies=_read_public)
+api_router.include_router(laboratories_router, dependencies=_read_public)
+api_router.include_router(indicators_router, dependencies=_read_public)
+api_router.include_router(analyses_router, dependencies=_read_public)
+api_router.include_router(values_router, dependencies=_read_public)
 
-# All analyzer endpoints require auth
+# ── Analyzer requires auth on all endpoints ───────────────────
+
 _analyzer_deps = [Depends(require_auth), Depends(_bearer)]
 api_router.include_router(analyzer_router, dependencies=_analyzer_deps)
 api_router.include_router(analyzer_ws_router)
-
-# Taxonomy — read-only, public (no auth scheme declared)
-api_router.include_router(species_router)
-api_router.include_router(genera_router)
-
-# Internal
-api_router.include_router(logs_router)
 
 app.include_router(api_router)
 

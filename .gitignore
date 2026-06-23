@@ -18,6 +18,7 @@ env
 docs_build
 site_build
 .venv
+uv.lock
 
 test_pred.py
 src/models
