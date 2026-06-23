@@ -36,7 +36,7 @@ def preprocess_one(image_bytes: bytes) -> torch.Tensor:
 # ── Batch (single-threaded) ──────────────────────────────────────────
 
 
-def preprocess_batch(image_bytes_list: list[bytes]) -> torch.Tensor:
+def preprocess_chunk(image_bytes_list: list[bytes]) -> torch.Tensor:
     """Decode and preprocess multiple images → tensor [N, 3, 224, 224].
 
     Runs synchronously — intended for a single thread-pool worker.
@@ -62,8 +62,8 @@ async def preprocess_parallel(
 
     Example
     -------
-    500 images × 3 ms decode = 1.5 s single-threaded.
-    500 images ÷ 4 workers = ~0.4 s.
+    500 images * 3 ms decode = 1.5 s single-threaded.
+    500 images / 4 workers = ~0.4 s.
     """
     import asyncio
 
@@ -78,7 +78,7 @@ async def preprocess_parallel(
 
     loop = asyncio.get_running_loop()
     tasks = [
-        loop.run_in_executor(executor, preprocess_batch, chunk) for chunk in chunks
+        loop.run_in_executor(executor, preprocess_chunk, chunk) for chunk in chunks
     ]
     chunk_tensors = await asyncio.gather(*tasks)
 

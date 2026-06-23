@@ -11,6 +11,10 @@ Control messages (Client → Server):
     {"type": "set_filename", "filename": "photo_001.jpg"}
         Задать имя для следующего бинарного кадра.
 
+    {"type": "image_id", "id": "550e8400-e29b-41d4-a716-446655440000"}
+        Установить ID для следующего бинарного кадра.
+        Если не указан — сервер сгенерирует UUID автоматически.
+
     {"type": "done"}
         Клиент закончил отправку. Сервер запускает финальный батч.
 
@@ -18,8 +22,11 @@ Server → Client (JSON text frames):
     {"type": "ready", "genus": "...", "models": [...], "chunk_size": 32}
         Сессия создана и готова принимать изображения.
 
-    {"type": "received", "index": N, "filename": "...", "size_bytes": N}
+    {"type": "received", "image_id": "uuid", "size_bytes": N}
         Подтверждение получения одного изображения.
+
+    {"type": "rejected", "image_id": "uuid", "reason": "..."}
+        Изображение отклонено (неверный формат или слишком большой размер).
 
     {"type": "batch_start", "count": N}
         Начинается обработка накопленного batch'а.
@@ -55,7 +62,10 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from collections.abc import Callable, Coroutine
 from dataclasses import dataclass, field
+from typing import Any
+from uuid import uuid4
 
 from src.features.analyzer.engine import model_cache
 from src.features.analyzer.inference import predict_batch_chunked
@@ -70,6 +80,12 @@ BATCH_CHUNK_SIZE = 32  # images per GPU forward pass (VRAM limit)
 AUTO_DRAIN_THRESHOLD = 64  # trigger auto-drain when buffer reaches this
 MAX_TOTAL_IMAGES = 10_000  # hard cap per session
 CLIENT_INACTIVITY_TIMEOUT = 60.0  # seconds → auto-done
+MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024  # 10 MB per image
+ALLOWED_MIME_TYPES = {"image/jpeg", "image/png"}
+
+# Magic bytes for format detection (first bytes of file)
+_PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+_JPEG_SIGNATURE = b"\xff\xd8\xff"
 
 # ── Image buffer ──────────────────────────────────────────────────────
 
@@ -83,18 +99,15 @@ class ImageBuffer:
     """
 
     images: list[bytes] = field(default_factory=list)
-    indices: list[int] = field(default_factory=list)
-    filenames: list[str] = field(default_factory=list)
+    image_ids: list[str] = field(default_factory=list)
 
-    def add(self, index: int, filename: str, data: bytes) -> None:
-        self.indices.append(index)
-        self.filenames.append(filename)
+    def add(self, image_id: str, data: bytes) -> None:
+        self.image_ids.append(image_id)
         self.images.append(data)
 
     def clear(self) -> None:
         self.images.clear()
-        self.indices.clear()
-        self.filenames.clear()
+        self.image_ids.clear()
 
     def __len__(self) -> int:
         return len(self.images)
@@ -121,7 +134,9 @@ class WsBatchSession:
         self,
         ws: WebSocket,
         genus: str,
-        model_map: dict[str, str],  # species → model_name
+        model_map: dict[
+            str, tuple[str, Callable[[], Coroutine[Any, Any, bytes]]]
+        ],  # species → (model_key, async_loader)
     ) -> None:
         self.ws = ws
         self.genus = genus
@@ -130,15 +145,16 @@ class WsBatchSession:
         # Accumulation buffer
         self._pending = ImageBuffer()
 
-        # Results: image_index → {species: probability or error_message}
-        self._results: dict[int, dict[str, float | str]] = {}
+        # Results: image_id → {species: probability or error_message}
+        self._results: dict[str, dict[str, float | str]] = {}
 
         # Counters
-        self._next_index = 0
+        self._total_received = 0
         self._total_processed = 0
         self._total_failed = 0
 
         # State
+        self._pending_image_id: str | None = None
         self._done_received = False
 
     # ── Entry point ───────────────────────────────────────────────
@@ -203,28 +219,65 @@ class WsBatchSession:
         msg_type = data.get("type")
         if msg_type == "done":
             self._done_received = True
-        # "set_filename" is reserved for future use (stored externally)
+        elif msg_type == "image_id":
+            self._pending_image_id = str(data.get("id", ""))
 
     async def _handle_image(self, data: bytes) -> None:
-        if self._next_index >= MAX_TOTAL_IMAGES:
+        if self._total_received >= MAX_TOTAL_IMAGES:
             await self._send_error(f"Max images ({MAX_TOTAL_IMAGES}) reached")
             self._done_received = True
             return
 
-        index = self._next_index
-        self._next_index += 1
-        self._pending.add(index, "unknown.jpg", data)
+        # Resolve image ID — client-provided or auto-generated UUID
+        image_id = self._pending_image_id or str(uuid4())
+        self._pending_image_id = None
+
+        # Validate size
+        if len(data) > MAX_IMAGE_SIZE_BYTES:
+            await self._ws_send(
+                {
+                    "type": "rejected",
+                    "image_id": image_id,
+                    "reason": f"Image too large: {len(data)} bytes (max {MAX_IMAGE_SIZE_BYTES})",
+                }
+            )
+            self._total_failed += 1
+            return
+
+        # Validate format via magic bytes
+        if not self._is_valid_image(data):
+            await self._ws_send(
+                {
+                    "type": "rejected",
+                    "image_id": image_id,
+                    "reason": "Unsupported format — only JPEG and PNG are accepted",
+                }
+            )
+            self._total_failed += 1
+            return
+
+        self._total_received += 1
+        self._pending.add(image_id, data)
 
         await self._ws_send(
             {
                 "type": "received",
-                "index": index,
+                "image_id": image_id,
                 "size_bytes": len(data),
             }
         )
 
         if len(self._pending) >= AUTO_DRAIN_THRESHOLD:
             await self._drain_pending()
+
+    @staticmethod
+    def _is_valid_image(data: bytes) -> bool:
+        """Check magic bytes to verify the image is PNG or JPEG."""
+        if data[:8] == _PNG_SIGNATURE:
+            return True
+        if data[:3] == _JPEG_SIGNATURE:
+            return True
+        return False
 
     # ── Phase 3: batch inference ──────────────────────────────────
 
@@ -263,7 +316,7 @@ class WsBatchSession:
             return
 
         # ── Infer (one model at a time, all images batched) ──────
-        for species, model_name in self.model_map.items():
+        for species, (model_key, loader) in self.model_map.items():
             await self._ws_send(
                 {
                     "type": "batch_progress",
@@ -275,11 +328,11 @@ class WsBatchSession:
 
             # Load model (or fetch from cache)
             try:
-                model = await model_cache.get(model_name)
+                model = await model_cache.get(model_key, loader)
             except Exception as exc:
-                logger.error("Model %s load failed: %s", model_name, exc)
-                for idx in batch.indices:
-                    self._results.setdefault(idx, {})[species + "_error"] = str(exc)
+                logger.error("Model %s load failed: %s", model_key, exc)
+                for img_id in batch.image_ids:
+                    self._results.setdefault(img_id, {})[species + "_error"] = str(exc)
                 self._total_failed += n
                 continue
 
@@ -289,13 +342,13 @@ class WsBatchSession:
                     batch_tensor, model, chunk_size=BATCH_CHUNK_SIZE
                 )
             except Exception:
-                logger.exception("Inference failed model=%s", model_name)
+                logger.exception("Inference failed model=%s", model_key)
                 probs = [0.0] * n
                 self._total_failed += n
 
             # Store results
-            for idx, prob in zip(batch.indices, probs):
-                self._results.setdefault(idx, {})[species] = round(prob, 2)
+            for img_id, prob in zip(batch.image_ids, probs):
+                self._results.setdefault(img_id, {})[species] = round(prob, 2)
             self._total_processed += n
 
             # Send partial results to client
@@ -303,7 +356,9 @@ class WsBatchSession:
                 {
                     "type": "results",
                     "model": species,
-                    "data": [self._make_result_entry(idx) for idx in batch.indices],
+                    "data": [
+                        self._make_result_entry(img_id) for img_id in batch.image_ids
+                    ],
                 }
             )
 
@@ -320,7 +375,7 @@ class WsBatchSession:
         await self._ws_send(
             {
                 "type": "complete",
-                "total_received": self._next_index,
+                "total_received": self._total_received,
                 "processed": self._total_processed,
                 "failed": self._total_failed,
             }
@@ -329,13 +384,9 @@ class WsBatchSession:
 
     # ── Helpers ──────────────────────────────────────────────────
 
-    def _make_result_entry(self, idx: int) -> dict:
-        """Build a single result entry for the WS response.
-
-        Computes ``predicted`` from non-error keys only, so that
-        ``"species_error"`` string values do not crash the comparison.
-        """
-        probs = self._results.get(idx, {})
+    def _make_result_entry(self, image_id: str) -> dict:
+        """Build a single result entry for the WS response."""
+        probs = self._results.get(image_id, {})
         # Keep only real (non-error) prediction keys
         real_probs = {k: v for k, v in probs.items() if not k.endswith("_error")}
         if real_probs:
@@ -345,9 +396,8 @@ class WsBatchSession:
             predicted = "unknown"
 
         return {
-            "index": idx,
+            "image_id": image_id,
             "probabilities": probs,
-            # "predicted": predicted,
         }
 
     async def _ws_send(self, data: dict) -> None:

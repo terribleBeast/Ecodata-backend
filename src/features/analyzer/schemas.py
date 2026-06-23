@@ -3,8 +3,30 @@ from src.shared.types import PyUUID
 
 
 class NeuralModelCreate(BaseModel):
-    name: str  # filename in storage
-    species_id: PyUUID
+    file_id: PyUUID
+    species_id: PyUUID | None = None
+    model_type: str = "species_classifier"
+    input_format: str | None = None
+    output_format: str | None = None
+
+
+class NeuralModelUpdate(BaseModel):
+    file_id: PyUUID | None = None
+    species_id: PyUUID | None = None
+    model_type: str | None = None
+    input_format: str | None = None
+    output_format: str | None = None
+    is_active: bool | None = None
+
+
+class NeuralModelResponse(BaseModel):
+    id: PyUUID
+    file_id: PyUUID
+    species_id: PyUUID | None
+    model_type: str
+    input_format: str | None
+    output_format: str | None
+    is_active: bool
 
 
 class Prediction(BaseModel):
@@ -13,16 +35,12 @@ class Prediction(BaseModel):
 
 
 class BatchImageResult(BaseModel):
-    """Один результат в batch-ответе (REST или WebSocket)."""
-
     index: int
     probabilities: dict[str, float]
     predicted: str
 
 
 class BatchResultsResponse(BaseModel):
-    """Ответ batch-эндпоинта."""
-
     total: int
     processed: int
     failed: int

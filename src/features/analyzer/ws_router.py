@@ -1,33 +1,29 @@
 """
 WebSocket endpoint for batch classification.
 
-Connect to ``ws://host:port/api/v1/classifier/ws/{genus_id}``
+Connect to ``ws://host:port/api/v1/analyzer/ws/{genus_id}``
 to start a batch-classification session for all species in that genus.
-
-See :mod:`src.features.classifier.ws_session` for the protocol.
 """
 
 from __future__ import annotations
 
 from collections import OrderedDict
+from collections.abc import Callable, Coroutine
+from typing import Any
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from loguru import logger
 from src.features.analyzer.ws_session import WsBatchSession
 from src.features.auth.service import decode_access_token
 from src.shared.database import PostgresSession
+from src.shared.rustfs import rustfs
 from starlette.websockets import WebSocketState
 
 router = APIRouter()
 
 
 async def _authenticate_ws(ws: WebSocket) -> dict | None:
-    """Extract and validate Bearer token from WebSocket handshake headers.
-
-    Returns decoded claims on success, or closes the WebSocket with 4001
-    (unauthorized) and returns None.
-    """
-    auth_header = ws.headers.get("authorization")  # ASGI lowercases headers
+    auth_header = ws.headers.get("authorization")
     if not auth_header or not auth_header.startswith("Bearer "):
         await ws.close(code=4001, reason="Authentication required")
         return None
@@ -53,13 +49,15 @@ async def batch_classification_ws(
         async with await PostgresSession.get_session() as db:
             from src.features.analyzer.repository import NeuralModelRepo
             from src.features.analyzer.service import NeuralModelService
+            from src.features.files.repository import FileRepo
+            from src.features.files.service import FileService
             from src.features.taxonomy.repository import SpeciesRepo
             from src.features.taxonomy.service import SpeciesService
 
             neural_model_service = NeuralModelService(NeuralModelRepo(db))
             species_service = SpeciesService(SpeciesRepo(db))
+            file_service = FileService(FileRepo(db))
 
-            # ── Look up species for this genus ────────────────────────
             species_list = await species_service.search_by_field("genus_id", genus_id)
             if not species_list:
                 await ws.send_json(
@@ -71,37 +69,46 @@ async def batch_classification_ws(
                 await ws.close(code=1008)
                 return
 
-            # ── Map species → model file ─────────────────────────────
-            model_map: OrderedDict[str, str] = OrderedDict()
+            # species → (model_key, async_loader)
+            model_map: OrderedDict[
+                str, tuple[str, Callable[[], Coroutine[Any, Any, bytes]]]
+            ] = OrderedDict()
             for sp in species_list:
                 neural_models = await neural_model_service.search_by_field(
                     "species_id", sp.id
                 )
-                if neural_models:
-                    model_map[sp.name] = neural_models[0].name
+                if not neural_models:
+                    continue
+                nm = neural_models[0]
+                file_record = await file_service.get_one(nm.file_id)
+                if file_record is None:
+                    continue
+
+                model_key = str(nm.id)
+
+                async def _loader(
+                    bucket=file_record.bucket, key=file_record.object_key
+                ):
+                    return await rustfs.get_object(bucket, key)
+
+                model_map[sp.latin_name] = (model_key, _loader)
 
             if not model_map:
                 await ws.send_json(
-                    {
-                        "type": "error",
-                        "message": f"No neural_models for genus '{genus_id}'",
-                    }
+                    {"type": "error", "message": f"No models for genus '{genus_id}'"}
                 )
                 await ws.close(code=1008)
                 return
 
-            # ── Preload models into cache ────────────────────────────
+            # Preload into cache
             from src.features.analyzer.engine import model_cache
 
-            for model_name in model_map.values():
+            for species, (model_key, loader) in model_map.items():
                 try:
-                    await model_cache.get(model_name)
+                    await model_cache.get(model_key, loader)
+                    logger.info("Preloaded model for %s", species)
                 except Exception:
-                    logger.warning("Preload failed for model {}", model_name)
-
-            # ── Run session ─── (DB session closes before inference) ─
-            # The DB session is only needed for the lookups above.
-            # Inference is CPU/GPU bound — we release the DB connection.
+                    logger.warning("Preload failed for %s", species)
 
         session = WsBatchSession(
             ws=ws,

@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 import asyncio
+import io
 import logging
 import os
 import threading
-import time
 from collections import OrderedDict
+from collections.abc import Callable, Coroutine
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
-from pathlib import Path
 from typing import Optional
 
 import torch
@@ -37,18 +37,13 @@ inference_executor = ThreadPoolExecutor(
 # ── GPU forward-pass semaphore ──────────────────────────────────────
 inference_semaphore = asyncio.Semaphore(2)
 
-# ── Models directory ────────────────────────────────────────────────
-MODELS_DIR = Path(
-    os.getenv(
-        "MODELS_DIR",
-        # Path(__file__).resolve().parent.parent.parent / "artifacts/models",
-        r"D:\projects\EcoData\backend\artifacts\models",
-    )
-)
-
 
 class LRUModelCache:
     """Thread-safe LRU cache for GPU models with VRAM management.
+
+    Models are loaded from bytes via an async loader callable provided
+    by the caller — this keeps the cache storage-agnostic (works with
+    local files, RustFS/S3, or any byte source).
 
     Principles
     ----------
@@ -57,7 +52,7 @@ class LRUModelCache:
       model is evicted: moved to CPU → reference deleted → CUDA cache
       cleared.
     * Concurrent load requests for the *same* model are deduplicated so
-      that only one coroutine pays the disk I/O + warmup cost.
+      that only one coroutine pays the I/O + warmup cost.
     * Thread-safe via ``threading.Lock`` — protects the internal dict
       from concurrent access by asyncio tasks and thread-pool workers.
     """
@@ -66,37 +61,39 @@ class LRUModelCache:
         self._max_models = max_models
         self._cache: OrderedDict[str, torch.nn.Module] = OrderedDict()
         self._lock = threading.Lock()
-        # Deduplication: model_path → asyncio.Event for concurrent loads
         self._loading: dict[str, asyncio.Event] = {}
 
     # ── public API ───────────────────────────────────────────────────
 
-    async def get(self, model_name: str) -> torch.nn.Module:
-        """Return a cached model or load it asynchronously."""
-        resolved = (MODELS_DIR / model_name).resolve()
-        model_path = str(resolved)
+    async def get(
+        self,
+        model_key: str,
+        loader: Callable[[], Coroutine[None, None, bytes]],
+    ) -> torch.nn.Module:
+        """Return a cached model or load it via *loader*.
 
-        # security guard: prevent path traversal
-        if not str(resolved).startswith(str(MODELS_DIR.resolve())):
-            raise ValueError(f"Path traversal detected: {model_name}")
-
+        ``model_key`` is a unique string identifying the model (e.g. a UUID
+        or ``bucket/object_key``).  ``loader`` is an async callable that
+        returns the raw model checkpoint bytes (``.pth`` file content).
+        """
         # Fast path: already cached, just bump LRU
-        model = self._acquire(model_path)
+        model = self._acquire(model_key)
         if model is not None:
             return model
 
-        # Slow path: load (with dedup across concurrent coroutines)
-        async with self._dedup_load(model_path):
-            # Double-check after acquiring the load slot
-            model = self._acquire(model_path)
+        # Slow path: fetch bytes and load state dict
+        async with self._dedup_load(model_key):
+            model = self._acquire(model_key)
             if model is not None:
                 return model
+
+            checkpoint_bytes = await loader()
 
             loop = asyncio.get_running_loop()
             state_dict = await loop.run_in_executor(
                 inference_executor,
-                _load_checkpoint_sync,
-                model_path,
+                _load_state_dict_from_bytes,
+                checkpoint_bytes,
             )
 
             model = _build_model(state_dict)
@@ -104,16 +101,14 @@ class LRUModelCache:
             if _is_cuda:
                 _warmup(model)
 
-            self._store(model_path, model)
+            self._store(model_key, model)
             return model
 
     def get_cached_count(self) -> int:
-        """Return the number of models currently in the cache."""
         with self._lock:
             return len(self._cache)
 
     def clear(self) -> None:
-        """Evict all models and free GPU memory."""
         with self._lock:
             while self._cache:
                 _, model = self._cache.popitem(last=False)
@@ -124,48 +119,45 @@ class LRUModelCache:
 
     # ── internal helpers ─────────────────────────────────────────────
 
-    def _acquire(self, model_path: str) -> Optional[torch.nn.Module]:
-        """Return model if cached, bump to LRU-most-recent position."""
+    def _acquire(self, model_key: str) -> Optional[torch.nn.Module]:
         with self._lock:
-            model = self._cache.get(model_path)
+            model = self._cache.get(model_key)
             if model is not None:
-                self._cache.move_to_end(model_path)  # bump to end
+                self._cache.move_to_end(model_key)
             return model
 
-    def _store(self, model_path: str, model: torch.nn.Module) -> None:
-        """Insert model into cache, evicting LRU entries if needed."""
+    def _store(self, model_key: str, model: torch.nn.Module) -> None:
         with self._lock:
             while len(self._cache) >= self._max_models:
-                lru_path, lru_model = self._cache.popitem(last=False)
-                logger.info("Evicting LRU model: %s", lru_path)
+                lru_key, lru_model = self._cache.popitem(last=False)
+                logger.info("Evicting LRU model: %s", lru_key)
                 _evict_later(lru_model)
 
-            self._cache[model_path] = model
+            self._cache[model_key] = model
             logger.info(
                 "Cached model: %s  (cache size: %d/%d)",
-                model_path,
+                model_key,
                 len(self._cache),
                 self._max_models,
             )
 
     @asynccontextmanager
-    async def _dedup_load(self, model_path: str):
-        """Ensure only one coroutine loads a given model at a time."""
+    async def _dedup_load(self, model_key: str):
         is_loader = False
         event: Optional[asyncio.Event] = None
 
         with self._lock:
-            if model_path not in self._loading:
-                self._loading[model_path] = asyncio.Event()
+            if model_key not in self._loading:
+                self._loading[model_key] = asyncio.Event()
                 is_loader = True
-            event = self._loading[model_path]
+            event = self._loading[model_key]
 
         if is_loader:
             try:
                 yield
             finally:
                 with self._lock:
-                    self._loading.pop(model_path, None)
+                    self._loading.pop(model_key, None)
                 event.set()
         else:
             await event.wait()
@@ -178,23 +170,15 @@ _evict_pending: list[torch.nn.Module] = []
 
 
 def _evict_model(model: torch.nn.Module) -> None:
-    """Move a model off the GPU and free its Python object."""
     model.to("cpu")
     del model
 
 
 def _evict_later(model: torch.nn.Module) -> None:
-    """Schedule deferred eviction — doesn't block the lock on GPU transfer."""
     _evict_pending.append(model)
 
 
 def flush_evictions() -> None:
-    """Execute all deferred evictions and clear the CUDA cache.
-
-    Call this periodically (e.g., after each request) or in a background
-    task so that GPU memory pressure from evicted models is relieved
-    promptly.
-    """
     global _evict_pending
     if not _evict_pending:
         return
@@ -212,23 +196,20 @@ def flush_evictions() -> None:
 
 
 # ── Module-level singleton ──────────────────────────────────────────
-# Keeps the same import path for existing callers.
-# Adjust ``max_models`` to match your GPU VRAM budget:
-#   ResNet50 ≈ 600 MB per model (weights + activations).
-#   Example: 8 GB GPU → max_models=6
+
 model_cache = LRUModelCache(max_models=2)
 
 
 # ── Model construction helpers ───────────────────────────────────────
 
 
-def _load_checkpoint_sync(model_path: str) -> dict:
-    """Load checkpoint as CPU tensors — runs in thread-pool worker."""
-    return torch.load(model_path, weights_only=True, map_location="cpu")
+def _load_state_dict_from_bytes(data: bytes) -> dict:
+    """Load a PyTorch checkpoint from raw bytes — runs in thread-pool."""
+    buffer = io.BytesIO(data)
+    return torch.load(buffer, weights_only=True, map_location="cpu")
 
 
 def _build_model(checkpoint: dict) -> torch.nn.Module:
-    """Construct ResNet50, load state dict, move to target device."""
     model = resnet50(weights=None)
     model.fc = torch.nn.Linear(2048, 2)
     model.load_state_dict(checkpoint["model_state_dict"])
@@ -238,7 +219,6 @@ def _build_model(checkpoint: dict) -> torch.nn.Module:
 
 
 def _warmup(model: torch.nn.Module) -> None:
-    """Run one dummy forward pass to trigger CUDA kernel compilation."""
     dummy = torch.randn(1, 3, 224, 224).to(device)
     with torch.inference_mode():
         _ = model(dummy)
@@ -253,7 +233,6 @@ async def async_get_prediction(
     image_bytes: bytes,
     model: torch.nn.Module,
 ) -> float:
-    """Decode raw image bytes and run inference in a thread-pool worker."""
     loop = asyncio.get_running_loop()
 
     async with inference_semaphore:
@@ -268,7 +247,6 @@ async def async_get_prediction(
 
 
 def _predict_sync(image_bytes: bytes, model: torch.nn.Module) -> float:
-    """Synchronous inference pipeline — runs inside a thread-pool worker."""
     raw = torch.frombuffer(image_bytes, dtype=torch.uint8)
     img_tensor = decode_image(raw, mode=ImageReadMode.RGB)
 

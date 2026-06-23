@@ -1,23 +1,22 @@
 import asyncio
-from pathlib import Path
-from shutil import copyfileobj
-from time import time
-from typing import Annotated, Optional
+from collections.abc import Callable, Coroutine
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, UploadFile
 from fastapi.responses import JSONResponse
 from src.features.analyzer.engine import (
-    MODELS_DIR,
     async_get_prediction,
     flush_evictions,
     model_cache,
 )
-from src.features.analyzer.schemas import NeuralModelCreate
+from src.features.analyzer.schemas import NeuralModelCreate, NeuralModelResponse
 from src.features.analyzer.service import (
     NeuralModelService,
     get_neural_model_service,
 )
+from src.features.files.service import FileService, get_file_service
 from src.features.taxonomy.service import SpeciesService, get_species_service
+from src.shared.rustfs import rustfs
 from src.shared.types import PyUUID
 
 router = APIRouter(prefix="/analyzer", tags=["analyzer"])
@@ -26,51 +25,36 @@ router = APIRouter(prefix="/analyzer", tags=["analyzer"])
 # ── CRUD ─────────────────────────────────────────────────────────────
 
 
-@router.get("/{genus_id}")
+@router.get("/models", response_model=list[NeuralModelResponse])
 async def neural_model_list(
-    neural_model_service: Annotated[
-        NeuralModelService, Depends(get_neural_model_service)
-    ],
-    species_service: Annotated[SpeciesService, Depends(get_species_service)],
-    genus_id: Optional[PyUUID] = None,
-):
-    # if genus_id:
-    items = await species_service.get_by_genus(str(genus_id))
-    # else:
-    #     items = await neural_model_service.get_all()
-    return {"data": items}
-
-
-@router.post("/")
-async def create_neural_model(
     service: Annotated[NeuralModelService, Depends(get_neural_model_service)],
-    model_file: UploadFile,
-    species_id: PyUUID,
 ):
-    model_file_extension = ".pth"
-
-    if Path(str(model_file.filename)).suffix.lower() != model_file_extension:
-        return {"message": "The model file must have 'pth' extension"}
-
-    model_name = str(int(time())) + model_file_extension
-    path = MODELS_DIR / model_name
-    try:
-        await service.create(NeuralModelCreate(name=model_name, species_id=species_id))
-
-        with open(path, "wb+") as f:
-            copyfileobj(model_file.file, f)
-
-        return {"message": f"The Model is saved with name {path}"}
-    except Exception as e:
-        return {"message": str(e)}
+    return await service.get_all()
 
 
-@router.delete("/{id}")
+@router.get("/models/{id}", response_model=NeuralModelResponse)
+async def neural_model_get(
+    id: PyUUID,
+    service: Annotated[NeuralModelService, Depends(get_neural_model_service)],
+):
+    return await service.get_one(id)
+
+
+@router.post("/models", response_model=PyUUID, status_code=201)
+async def create_neural_model(
+    body: NeuralModelCreate,
+    service: Annotated[NeuralModelService, Depends(get_neural_model_service)],
+):
+    """Register a neural model from a previously uploaded file (RustFS)."""
+    return await service.create(body)
+
+
+@router.delete("/models/{id}", status_code=204)
 async def delete_neural_model(
     id: PyUUID,
     service: Annotated[NeuralModelService, Depends(get_neural_model_service)],
 ):
-    return await service.delete(id)
+    await service.delete(id)
 
 
 # ── Inference ────────────────────────────────────────────────────────
@@ -83,45 +67,59 @@ async def get_predictions(
     neural_model_service: Annotated[
         NeuralModelService, Depends(get_neural_model_service)
     ],
-    get_species_service: Annotated[SpeciesService, Depends(get_species_service)],
+    species_service: Annotated[SpeciesService, Depends(get_species_service)],
+    file_service: Annotated[FileService, Depends(get_file_service)],
 ):
-    probabilities: list[dict[str, str | float]] = []
-
     # 1. Look up all plant species for this genus
     species_list = [
-        (item.id, item.name)
-        for item in await get_species_service.search_by_field("genus_id", genus_id)
+        (item.id, item.latin_name)
+        for item in await species_service.search_by_field("genus_id", genus_id)
     ]
 
-    # 2. Find the neural_model model for each species
-    models: dict[str, str] = {}
-    for species_id, species in species_list:
-        model_list = await neural_model_service.search_by_field(
+    # 2. Build model map: species → (model_key, loader)
+    model_loaders: dict[str, tuple[str, Callable[[], Coroutine[Any, Any, bytes]]]] = {}
+    for species_id, species_name in species_list:
+        neural_models = await neural_model_service.search_by_field(
             "species_id", species_id
         )
-        if model_list:
-            models[species] = model_list[0].name
+        if neural_models:
+            nm = neural_models[0]
+            file_record = await file_service.get_one(nm.file_id)
+            if file_record is None:
+                continue
 
-    if not models:
+            model_key = str(nm.id)
+
+            async def make_loader(bucket: str, key: str):
+                async def _loader():
+                    return await rustfs.get_object(bucket, key)
+
+                return _loader
+
+            loader = await make_loader(
+                str(file_record.bucket), str(file_record.object_key)
+            )
+            model_loaders[species_name] = (model_key, loader)
+
+    if not model_loaders:
         return JSONResponse(
-            {"message": f"No neural_models found for genus '{genus_id}'"},
+            {"message": f"No models found for genus '{genus_id}'"},
             status_code=404,
         )
 
-    # 3. Read image bytes once (async)
+    # 3. Read image bytes once
     img_data = await image.read()
 
-    # 4. Run inference per species — each prediction runs in a thread-pool
-    #    worker so the event loop stays responsive.  Models are cached in
-    #    memory after the first load, so subsequent calls are cheap.
-
-    async def predict_one(species: str, model_name: str):
-        model = await model_cache.get(model_name)
+    # 4. Run inference per species
+    async def predict_one(species: str, model_key: str, loader):
+        model = await model_cache.get(model_key, loader)
         probability = await async_get_prediction(img_data, model)
         return {"classifier": species, "probability": probability}
 
-    tasks = [predict_one(species, model_name) for species, model_name in models.items()]
-
+    tasks = [
+        predict_one(species, key, loader)
+        for species, (key, loader) in model_loaders.items()
+    ]
     probabilities = await asyncio.gather(*tasks)
 
     flush_evictions()
