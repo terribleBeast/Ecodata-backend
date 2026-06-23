@@ -20,16 +20,13 @@ from src.shared.types import PyUUID
 genera_router = APIRouter(prefix="/plants/genera", tags=["genera"])
 
 
-# ── Genera ──────────────────────────────────────────────────────────────
-
-
 @genera_router.get("/", response_model=list[GenusRead])
 async def genus_list(
     service: Annotated[GenusService, Depends(get_genus_service)],
     q: str | None = None,
 ):
     if q:
-        return await service.search_by_field("name", q)
+        return await service.search_by_field("latin_name", q)
     return await service.get_all()
 
 
@@ -38,8 +35,7 @@ async def genus_get(
     id: PyUUID,
     service: Annotated[GenusService, Depends(get_genus_service)],
 ):
-    item = await service.get_one(id)
-    return item
+    return await service.get_one(id)
 
 
 @genera_router.post("/", response_model=GenusRead, status_code=status.HTTP_201_CREATED)
@@ -58,8 +54,7 @@ async def genus_update(
     service: Annotated[GenusService, Depends(get_genus_service)],
 ):
     await service.update(id, body)
-    item = await service.get_one(id)
-    return item
+    return await service.get_one(id)
 
 
 @genera_router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -71,7 +66,6 @@ async def genus_delete(
 
 
 species_router = APIRouter(prefix="/species", tags=["species"])
-# ── Species ─────────────────────────────────────────────────────────────
 
 
 @species_router.get("/", response_model=list[SpeciesRead])
@@ -83,7 +77,7 @@ async def species_list(
     if genus_id:
         return await service.search_by_field("genus_id", genus_id)
     if q:
-        return await service.search_by_field("name", q)
+        return await service.search_by_field("latin_name", q)
     return await service.get_all()
 
 
@@ -92,8 +86,7 @@ async def species_get(
     id: PyUUID,
     service: Annotated[SpeciesService, Depends(get_species_service)],
 ):
-    item = await service.get_one(id)
-    return item
+    return await service.get_one(id)
 
 
 @species_router.post(
@@ -114,8 +107,7 @@ async def species_update(
     service: Annotated[SpeciesService, Depends(get_species_service)],
 ):
     await service.update(id, body)
-    item = await service.get_one(id)
-    return item
+    return await service.get_one(id)
 
 
 @species_router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)

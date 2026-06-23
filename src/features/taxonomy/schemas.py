@@ -1,38 +1,43 @@
-from pydantic import BaseModel, StringConstraints
-from src.shared.types import PyUUID
-from typing_extensions import Annotated
+from typing import Annotated
 
-NameField = Annotated[str, StringConstraints(max_length=40)]
+from pydantic import BaseModel, Field
+from src.shared.types import PyUUID
 
 
 class GenusCreate(BaseModel):
-    name: NameField
+    latin_name: Annotated[str, Field(min_length=1, max_length=150)]
+    russian_name: str | None = None
 
 
 class GenusUpdate(BaseModel):
-    name: NameField
+    latin_name: Annotated[str | None, Field(min_length=1, max_length=150)] = None
+    russian_name: str | None = None
 
 
 class GenusRead(BaseModel):
     id: PyUUID
-    name: str
+    latin_name: str
+    russian_name: str | None
 
     model_config = {"from_attributes": True}
 
 
 class SpeciesCreate(BaseModel):
-    name: NameField
+    latin_name: Annotated[str, Field(min_length=1, max_length=150)]
+    russian_name: str | None = None
     genus_id: PyUUID
 
 
 class SpeciesUpdate(BaseModel):
-    name: NameField | None = None
+    latin_name: Annotated[str | None, Field(min_length=1, max_length=150)] = None
+    russian_name: str | None = None
     genus_id: PyUUID | None = None
 
 
 class SpeciesRead(BaseModel):
     id: PyUUID
-    name: str
+    latin_name: str
+    russian_name: str | None
     genus_id: PyUUID
 
     model_config = {"from_attributes": True}

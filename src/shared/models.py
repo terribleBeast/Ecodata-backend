@@ -19,26 +19,3 @@ class BaseSqlModel:
             "pk": "pk_%(table_name)s",
         }
     )
-
-
-intpk = Annotated[int, mapped_column(primary_key=True)]
-
-created_at_utc = Annotated[
-    datetime,
-    mapped_column(
-        DateTime(timezone=True),
-        default=lambda: datetime.utcnow(),
-        server_default=func.timezone("utc", func.now()),
-    ),
-]
-
-updated_at_utc = Annotated[
-    datetime,
-    mapped_column(
-        DateTime(timezone=True),
-        default=lambda: datetime.utcnow(),
-        server_default=func.timezone("utc", func.now()),
-        onupdate=lambda: datetime.utcnow(),
-        server_onupdate=func.timezone("utc", func.now()),
-    ),
-]
