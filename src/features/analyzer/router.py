@@ -15,6 +15,7 @@ from src.features.analyzer.service import (
     get_neural_model_service,
 )
 from src.features.files.service import FileService, get_file_service
+from src.features.taxonomy.schemas import SpeciesRead
 from src.features.taxonomy.service import SpeciesService, get_species_service
 from src.shared.rustfs import rustfs
 from src.shared.types import PyUUID
@@ -24,6 +25,48 @@ router = APIRouter(prefix="/analyzer", tags=["analyzer"])
 
 
 # ── CRUD ─────────────────────────────────────────────────────────────
+
+
+@router.get(
+    "/available-species/{genus_id}",
+    response_model=list[SpeciesRead],
+)
+async def available_species_for_models(
+    genus_id: PyUUID,
+    neural_model_service: Annotated[
+        NeuralModelService, Depends(get_neural_model_service)
+    ],
+    species_service: Annotated[SpeciesService, Depends(get_species_service)],
+    file_service: Annotated[FileService, Depends(get_file_service)],
+):
+    species_list = await species_service.search_by_field("genus_id", genus_id)
+
+    available_species = []
+
+    for species in species_list:
+        neural_models = await neural_model_service.search_by_field(
+            "species_id",
+            species.id,
+        )
+
+        active_classifier_models = [
+            model
+            for model in neural_models
+            if model.is_active and model.model_type == "species_classifier"
+        ]
+
+        if not active_classifier_models:
+            continue
+
+        model = active_classifier_models[0]
+        file_record = await file_service.get_one(model.file_id)
+
+        if file_record is None:
+            continue
+
+        available_species.append(species)
+
+    return available_species
 
 
 @router.get("/models", response_model=list[NeuralModelResponse])
@@ -37,7 +80,7 @@ async def neural_model_list(
     if genus_id:
         species_ids = list(
             map(
-                lambda item: item.species_id,
+                lambda item: item.id,
                 list(await species_service.get_by_genus(genus_id)),
             )
         )

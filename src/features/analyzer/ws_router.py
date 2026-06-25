@@ -24,11 +24,19 @@ router = APIRouter()
 
 async def _authenticate_ws(ws: WebSocket) -> dict | None:
     auth_header = ws.headers.get("authorization")
-    if not auth_header or not auth_header.startswith("Bearer "):
+
+    token = None
+    if auth_header and auth_header.startswith("Bearer "):
+        token = auth_header[7:]
+    else:
+        token = ws.query_params.get("token")
+
+    if not token:
         await ws.close(code=4001, reason="Authentication required")
         return None
+
     try:
-        return decode_access_token(auth_header[7:])
+        return decode_access_token(token)
     except Exception:
         await ws.close(code=4001, reason="Invalid or expired token")
         return None

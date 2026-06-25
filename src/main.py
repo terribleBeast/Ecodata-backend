@@ -179,12 +179,22 @@ import httpx
 @app.get("/rustfs/http-test")
 async def rustfs_http_test():
     try:
-        async with httpx.AsyncClient(timeout=5) as client:
+        async with httpx.AsyncClient(
+            timeout=5,
+            trust_env=False,  # important: ignore system proxy env vars
+            http1=True,
+            http2=False,
+            headers={
+                "Connection": "close",
+                "Accept": "application/xml",
+            },
+        ) as client:
             response = await client.get("http://127.0.0.1:19010/new-data")
 
         return {
             "status": "ok",
             "http_status": response.status_code,
+            "headers": dict(response.headers),
             "body": response.text,
         }
 
@@ -192,5 +202,6 @@ async def rustfs_http_test():
         return {
             "status": "error",
             "exception": type(exc).__name__,
+            "repr": repr(exc),
             "message": str(exc),
         }

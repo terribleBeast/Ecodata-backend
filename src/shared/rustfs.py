@@ -12,6 +12,7 @@ Configuration via environment variables (with local-dev defaults):
 
 from __future__ import annotations
 
+import base64
 import hashlib
 import os
 from collections.abc import AsyncGenerator
@@ -20,7 +21,7 @@ from typing import Any
 
 import aioboto3
 from boto3.session import Config
-from botocore.exceptions import ClientError, EndpointConnectionError
+from botocore.exceptions import ClientError
 
 
 class RustFSClient:
@@ -37,7 +38,7 @@ class RustFSClient:
             "RUSTFS_ENDPOINT", "http://127.0.0.1:19010"
         )
         self._access_key = access_key or os.getenv("RUSTFS_ACCESS_KEY", "admin")
-        self._secret_key = secret_key or os.getenv("RUSTFS_SECRET_KEY", "admin123")
+        self._secret_key = secret_key or os.getenv("RUSTFS_SECRET_KEY", "admin123456")
         self._region = region
 
     @asynccontextmanager
@@ -65,8 +66,9 @@ class RustFSClient:
         body: bytes,
         content_type: str = "application/octet-stream",
     ) -> dict[str, Any]:
-        checksum = hashlib.sha256(body).hexdigest()
         size = len(body)
+        checksum_sha256 = hashlib.sha256(body).hexdigest()
+        content_md5 = base64.b64encode(hashlib.md5(body).digest()).decode()
 
         async with self._client() as client:
             await client.put_object(
@@ -74,10 +76,15 @@ class RustFSClient:
                 Key=key,
                 Body=body,
                 ContentType=content_type,
-                ChecksumSHA256=checksum,
+                ContentMD5=content_md5,
             )
 
-        return {"bucket": bucket, "key": key, "size_bytes": size, "checksum": checksum}
+        return {
+            "bucket": bucket,
+            "key": key,
+            "size_bytes": size,
+            "checksum": checksum_sha256,
+        }
 
     async def get_object(self, bucket: str, key: str) -> bytes:
         async with self._client() as client:
@@ -134,3 +141,5 @@ class RustFSClient:
 
 # Singleton — one client, shared across requests
 rustfs = RustFSClient()
+
+# file:  1524e2a4-76db-466b-bbfa-63df89a1d276
