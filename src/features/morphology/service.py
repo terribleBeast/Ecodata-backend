@@ -44,14 +44,16 @@ class MorphologicalFeatureService(BaseService):
         self._repo = repo
 
 
-class LeafMorphologicalFeatureValueService(BaseService):
+class LeafMorphologicalFeatureValueService:
+    """Service for composite-PK entity — does not inherit BaseService."""
+
     def __init__(self, repo: LeafMorphologicalFeatureValueRepo):
         self._repo = repo
 
     async def get_one(self, leaf_id: PyUUID, morphological_feature_id: PyUUID):
         return await self._repo.get_by_ids(leaf_id, morphological_feature_id)
 
-    async def create(self, item: BaseModel):
+    async def create(self, item: BaseModel) -> None:
         item_dict = item.model_dump()
         await self._repo.create(item_dict)
 
@@ -60,12 +62,12 @@ class LeafMorphologicalFeatureValueService(BaseService):
         leaf_id: PyUUID,
         morphological_feature_id: PyUUID,
         item: BaseModel,
-    ):
+    ) -> None:
         await self._repo.update_by_ids(
             leaf_id, morphological_feature_id, item.model_dump(exclude_unset=True)
         )
 
-    async def delete(self, leaf_id: PyUUID, morphological_feature_id: PyUUID):
+    async def delete(self, leaf_id: PyUUID, morphological_feature_id: PyUUID) -> None:
         await self._repo.delete_by_ids(leaf_id, morphological_feature_id)
 
 

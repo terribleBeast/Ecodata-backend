@@ -2,6 +2,7 @@ from decimal import Decimal
 from typing import Annotated
 
 from pydantic import BaseModel, Field
+from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
 
 # ── Country ───────────────────────────────────────────────────
@@ -15,8 +16,13 @@ class CountryUpdate(BaseModel):
     name: Annotated[str | None, Field(min_length=1, max_length=255)] = None
 
 
-class CountryResponse(BaseModel):
-    id: PyUUID
+class CountryResponse(BaseSchema):
+    country_id: PyUUID = Field(validation_alias="id")
+    name: str
+
+
+class CountryNested(BaseSchema):
+    country_id: PyUUID = Field(validation_alias="id")
     name: str
 
 
@@ -33,10 +39,15 @@ class RegionUpdate(BaseModel):
     country_id: PyUUID | None = None
 
 
-class RegionResponse(BaseModel):
-    id: PyUUID
+class RegionNested(BaseSchema):
+    region_id: PyUUID = Field(validation_alias="id")
     name: str
-    country_id: PyUUID
+
+
+class RegionResponse(BaseSchema):
+    region_id: PyUUID = Field(validation_alias="id")
+    name: str
+    country: CountryNested
 
 
 # ── District ──────────────────────────────────────────────────
@@ -52,10 +63,15 @@ class DistrictUpdate(BaseModel):
     region_id: PyUUID | None = None
 
 
-class DistrictResponse(BaseModel):
-    id: PyUUID
+class DistrictNested(BaseSchema):
+    district_id: PyUUID = Field(validation_alias="id")
     name: str
-    region_id: PyUUID
+
+
+class DistrictResponse(BaseSchema):
+    district_id: PyUUID = Field(validation_alias="id")
+    name: str
+    region: RegionNested
 
 
 # ── SettlementType ────────────────────────────────────────────
@@ -69,8 +85,13 @@ class SettlementTypeUpdate(BaseModel):
     name: Annotated[str | None, Field(min_length=1, max_length=255)] = None
 
 
-class SettlementTypeResponse(BaseModel):
-    id: PyUUID
+class SettlementTypeResponse(BaseSchema):
+    settlement_type_id: PyUUID = Field(validation_alias="id")
+    name: str
+
+
+class SettlementTypeNested(BaseSchema):
+    settlement_type_id: PyUUID = Field(validation_alias="id")
     name: str
 
 
@@ -89,11 +110,11 @@ class SettlementUpdate(BaseModel):
     settlement_type_id: PyUUID | None = None
 
 
-class SettlementResponse(BaseModel):
-    id: PyUUID
+class SettlementResponse(BaseSchema):
+    settlement_id: PyUUID = Field(validation_alias="id")
     name: str
-    district_id: PyUUID
-    settlement_type_id: PyUUID
+    district: DistrictNested
+    settlement_type: SettlementTypeNested
 
 
 # ── Street ────────────────────────────────────────────────────
@@ -107,8 +128,8 @@ class StreetUpdate(BaseModel):
     name: Annotated[str | None, Field(min_length=1, max_length=255)] = None
 
 
-class StreetResponse(BaseModel):
-    id: PyUUID
+class StreetResponse(BaseSchema):
+    street_id: PyUUID = Field(validation_alias="id")
     name: str
 
 
@@ -123,8 +144,8 @@ class HouseNumberUpdate(BaseModel):
     number: Annotated[str | None, Field(min_length=1, max_length=50)] = None
 
 
-class HouseNumberResponse(BaseModel):
-    id: PyUUID
+class HouseNumberResponse(BaseSchema):
+    house_number_id: PyUUID = Field(validation_alias="id")
     number: str
 
 
@@ -143,11 +164,15 @@ class AddressUpdate(BaseModel):
     settlement_id: PyUUID | None = None
 
 
-class AddressResponse(BaseModel):
-    id: PyUUID
+class AddressResponse(BaseSchema):
+    address_id: PyUUID = Field(validation_alias="id")
     house_number_id: PyUUID
     street_id: PyUUID
     settlement_id: PyUUID
+
+
+class AddressNested(BaseSchema):
+    address_id: PyUUID = Field(validation_alias="id")
 
 
 # ── Location ──────────────────────────────────────────────────
@@ -175,8 +200,8 @@ class LocationUpdate(BaseModel):
     description: str | None = None
 
 
-class LocationResponse(BaseModel):
-    id: PyUUID
+class LocationResponse(BaseSchema):
+    location_id: PyUUID = Field(validation_alias="id")
     address_id: PyUUID | None
     latitude: Decimal | None
     longitude: Decimal | None

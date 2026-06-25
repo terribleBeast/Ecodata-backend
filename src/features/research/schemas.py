@@ -1,8 +1,15 @@
-from datetime import date
+from datetime import date, datetime
 from typing import Annotated
 
 from pydantic import BaseModel, Field
+from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
+
+
+class ResearcherNested(BaseSchema):
+    researcher_id: PyUUID = Field(validation_alias="id")
+    first_name: str
+    last_name: str
 
 
 class ResearchCreate(BaseModel):
@@ -30,15 +37,21 @@ class ResearchUpdate(BaseModel):
     researcher_ids: list[PyUUID] | None = None
 
 
-class ResearchResponse(BaseModel):
-    id: PyUUID
+class ResearchResponse(BaseSchema):
+    research_id: PyUUID = Field(validation_alias="id")
     title: str
     goal: str | None
     description: str | None
     status: str
     start_date: date | None
     end_date: date | None
-    created_by_researcher_id: PyUUID | None
+    created_by: ResearcherNested | None = None
+    researcher_ids: list[ResearcherNested] = Field(
+        default_factory=list,
+        validation_alias="participants",
+    )
+    created_at: datetime
+    updated_at: datetime
 
 
 class ResearchAssignResearchers(BaseModel):

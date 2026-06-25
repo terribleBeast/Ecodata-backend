@@ -56,19 +56,19 @@ async def research_delete(
     await service.delete(id)
 
 
-@router.post("/invite/{researcher_id}", status_code=204)
+@router.post("/invite/{research_id}", status_code=204)
 async def research_add_researchers(
-    researcher_id: PyUUID,
+    research_id: PyUUID,
     body: ResearchAssignResearchers,
     service: Annotated[ResearchService, Depends(get_research_service)],
 ):
-    await service.add_researchers(researcher_id, body.researcher_ids)
+    await service.add_researchers(research_id, body.researcher_ids)
 
 
-@router.delete("/seprate/{id}", status_code=204)
+@router.delete("/seprate/{research_id}", status_code=204)
 async def research_remove_researchers(
-    researcher_id: PyUUID,
+    research_id: PyUUID,
     body: ResearchAssignResearchers,
     service: Annotated[ResearchService, Depends(get_research_service)],
 ):
-    await service.remove_researchers(researcher_id, body.researcher_ids)
+    await service.remove_researchers(research_id, body.researcher_ids)

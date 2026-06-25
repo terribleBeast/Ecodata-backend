@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, Query
 from src.features.researchers.schemas import (
     ResearcherCreate,
     ResearcherResponse,
@@ -15,8 +15,14 @@ router = APIRouter(prefix="/researchers", tags=["researchers"])
 @router.get("/", response_model=list[ResearcherResponse])
 async def researcher_list(
     service: Annotated[ResearcherService, Depends(get_researcher_service)],
+    ids: list[PyUUID] = Query(None),
 ):
-    return await service.get_all()
+    print(ids)
+    if ids:
+        result = await service.get_by_ids(ids)
+    result = await service.get_all()
+    print(result)
+    return result
 
 
 @router.get("/{id}", response_model=ResearcherResponse)
@@ -24,7 +30,12 @@ async def researcher_get(
     id: PyUUID,
     service: Annotated[ResearcherService, Depends(get_researcher_service)],
 ):
-    return await service.get_one(id)
+    user = await service.get_one(id)
+    if not user:
+        raise HTTPException(
+            status_code=404,
+        )
+    return user
 
 
 @router.post("/", response_model=PyUUID, status_code=201)

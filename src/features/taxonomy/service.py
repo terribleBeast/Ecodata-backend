@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.features.taxonomy.repository import GenusRepo, SpeciesRepo
 from src.shared.database import get_db
 from src.shared.service import BaseService
+from src.shared.types import PyUUID
 
 
 async def get_genus_repo(session: AsyncSession = Depends(get_db)) -> GenusRepo:
@@ -22,7 +23,7 @@ class SpeciesService(BaseService):
     def __init__(self, repo: SpeciesRepo):
         self._repo = repo
 
-    def get_by_genus(self, genus_id: str):
+    def get_by_genus(self, genus_id: PyUUID):
         return self._repo.get_by_genus(genus_id)
 
 

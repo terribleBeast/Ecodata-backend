@@ -9,6 +9,7 @@ dependencies = [
     "asyncpg>=0.31.0",
     "email-validator>=2.3.0",
     "fastapi>=0.136.0",
+    "httpx>=0.28.1",
     "loguru>=0.7.3",
     "numpy==1.26.4",
     "pwdlib[argon2]>=0.3.0",

@@ -3,7 +3,6 @@ from __future__ import annotations
 import asyncio
 import io
 import logging
-import os
 import threading
 from collections import OrderedDict
 from collections.abc import Callable, Coroutine
@@ -23,7 +22,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 _is_cuda = device.type == "cuda"
 
 if _is_cuda:
-    torch.backends.cudnn.benchmark = True
+    torch.backends.cuda.matmul.allow_tf32 = True  # type: ignore[reportAttributeAccessIssue]
     logger.info("Using CUDA device: %s", torch.cuda.get_device_name(0))
 else:
     logger.info("CUDA not available — falling back to CPU")

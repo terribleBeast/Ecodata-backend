@@ -3,7 +3,8 @@ from uuid import uuid4
 
 from sqlalchemy import DateTime, ForeignKey, String, func
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from src.features.locations.models import Address
 from src.shared.models import BaseSqlModel
 from src.shared.types import PyUUID
 
@@ -39,3 +40,6 @@ class Organization(BaseSqlModel):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), default=func.now()
     )
+
+    organization_type: Mapped["OrganizationType | None"] = relationship(lazy="joined")
+    address: Mapped["Address | None"] = relationship(lazy="joined")

@@ -1,9 +1,5 @@
-from datetime import datetime
-from typing import Annotated
-
-from sqlalchemy import DateTime, MetaData, func
+from sqlalchemy import MetaData
 from sqlalchemy.ext.declarative import as_declarative
-from sqlalchemy.orm import mapped_column
 
 
 @as_declarative()

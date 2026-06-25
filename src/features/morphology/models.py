@@ -12,7 +12,7 @@ from sqlalchemy import (
     func,
 )
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.shared.models import BaseSqlModel
 from src.shared.types import PyUUID
 
@@ -38,6 +38,10 @@ class MorphologicalFeature(BaseSqlModel):
     default_unit_id: Mapped[PyUUID | None] = mapped_column(
         UUID,
         ForeignKey("measurement_units.measurement_unit_id", ondelete="SET NULL"),
+    )
+
+    default_unit: Mapped["MeasurementUnit | None"] = relationship(
+        "MeasurementUnit", lazy="joined"
     )
 
 
@@ -72,3 +76,19 @@ class LeafMorphologicalFeatureValue(BaseSqlModel):
     measured_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), default=func.now()
     )
+
+    leaf: Mapped["Leaf"] = relationship("Leaf", lazy="joined")
+    morphological_feature: Mapped["MorphologicalFeature"] = relationship(
+        "MorphologicalFeature", lazy="joined"
+    )
+    measurement_unit: Mapped["MeasurementUnit | None"] = relationship(
+        "MeasurementUnit", lazy="joined"
+    )
+    measured_by_model: Mapped["NeuralModel | None"] = relationship(
+        "NeuralModel", lazy="joined"
+    )
+
+
+# ── circular imports ────────────────────────────────────────────────
+from src.features.analyzer.models import NeuralModel  # noqa: E402, F811
+from src.features.leaves.models import Leaf  # noqa: E402, F811

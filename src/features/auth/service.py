@@ -5,8 +5,9 @@ from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pwdlib import PasswordHash
 from sqlalchemy.ext.asyncio import AsyncSession
-from src.features.auth.repository import SystemRoleRepo, UserRepo
+from src.features.auth.repository import SystemRoleRepo
 from src.features.auth.schemas import TokenResponse
+from src.features.researchers.repository import ResearcherRepo
 from src.shared.database import get_db
 from src.shared.service import BaseService
 from src.shared.types import PyUUID
@@ -54,10 +55,10 @@ async def get_system_role_repo(
     return SystemRoleRepo(session)
 
 
-async def get_user_repo(
+async def get_researcher_repo(
     session: AsyncSession = Depends(get_db),
-) -> UserRepo:
-    return UserRepo(session)
+) -> ResearcherRepo:
+    return ResearcherRepo(session)
 
 
 # ── Services ──────────────────────────────────────────────────
@@ -68,45 +69,60 @@ class SystemRoleService(BaseService[SystemRoleRepo]):
         self._repo = repo
 
 
-class UserService(BaseService[UserRepo]):
-    def __init__(self, repo: UserRepo):
+class UserService(BaseService[ResearcherRepo]):
+    def __init__(self, repo: ResearcherRepo):
         self._repo = repo
 
 
 class AuthService:
-    def __init__(self, user_repo: UserRepo):
-        self._user_repo = user_repo
+    def __init__(self, researcher_repo: ResearcherRepo):
+        self._researcher_repo = researcher_repo
 
     async def register(
-        self, email: str, username: str, password: str, role_id: PyUUID
+        self,
+        email: str,
+        password: str,
+        system_role_id: PyUUID,
+        first_name: str,
+        last_name: str,
+        patronymic: str | None = None,
+        phone: str | None = None,
+        orcid_link: str | None = None,
+        job_id: PyUUID | None = None,
+        organization_id: PyUUID | None = None,
     ) -> PyUUID:
-        existing = await self._user_repo.get_by_username(username)
-        if existing:
-            raise HTTPException(status_code=409, detail="Username already taken")
-        existing = await self._user_repo.get_by_email(email)
+        existing = await self._researcher_repo.get_by_email(email)
         if existing:
             raise HTTPException(status_code=409, detail="Email already registered")
 
-        user_id = self._user_repo.new_id()
-        await self._user_repo.create(
+        researcher_id = self._researcher_repo.new_id()
+        await self._researcher_repo.create(
             {
-                "id": user_id,
+                "id": researcher_id,
                 "email": email,
-                "username": username,
                 "password_hash": hash_password(password),
-                "system_role_id": role_id,
+                "system_role_id": system_role_id,
+                "first_name": first_name,
+                "last_name": last_name,
+                "patronymic": patronymic,
+                "phone": phone,
+                "orcid_link": orcid_link,
+                "job_id": job_id,
+                "organization_id": organization_id,
             }
         )
-        return user_id
+        return researcher_id
 
-    async def login(self, username: str, password: str) -> TokenResponse:
-        user = await self._user_repo.get_by_username(username)
-        if not user or not verify_password(password, user.password_hash):
+    async def login(self, email: str, password: str) -> TokenResponse:
+        researcher = await self._researcher_repo.get_by_email(email)
+        if not researcher or not verify_password(password, researcher.password_hash):
             raise HTTPException(status_code=401, detail="Invalid credentials")
-        if not user.is_active:
+        if not researcher.is_active:
             raise HTTPException(status_code=403, detail="Account is deactivated")
 
-        token = create_access_token({"sub": str(user.id), "username": user.username})
+        token = create_access_token(
+            {"sub": str(researcher.id), "email": researcher.email}
+        )
         return TokenResponse(access_token=token)
 
 
@@ -115,18 +131,18 @@ class AuthService:
 
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials | None = Depends(_bearer_scheme),
-    user_repo: UserRepo = Depends(get_user_repo),
+    researcher_repo: ResearcherRepo = Depends(get_researcher_repo),
 ):
     if credentials is None:
         raise HTTPException(status_code=401, detail="Not authenticated")
     payload = decode_access_token(credentials.credentials)
-    user_id: str = payload.get("sub")
-    if user_id is None:
+    researcher_id = payload.get("sub")
+    if not isinstance(researcher_id, str):
         raise HTTPException(status_code=401, detail="Invalid token payload")
-    user = await user_repo.get_by_id(PyUUID(user_id))
-    if user is None or not user.is_active:
-        raise HTTPException(status_code=401, detail="User not found or inactive")
-    return user
+    researcher = await researcher_repo.get_by_id(PyUUID(researcher_id))
+    if researcher is None or not researcher.is_active:
+        raise HTTPException(status_code=401, detail="Researcher not found or inactive")
+    return researcher
 
 
 # ── Service factories ─────────────────────────────────────────
@@ -139,12 +155,12 @@ async def get_system_role_service(
 
 
 async def get_user_service(
-    repo: UserRepo = Depends(get_user_repo),
+    repo: ResearcherRepo = Depends(get_researcher_repo),
 ) -> UserService:
     return UserService(repo)
 
 
 async def get_auth_service(
-    user_repo: UserRepo = Depends(get_user_repo),
+    researcher_repo: ResearcherRepo = Depends(get_researcher_repo),
 ) -> AuthService:
-    return AuthService(user_repo)
+    return AuthService(researcher_repo)

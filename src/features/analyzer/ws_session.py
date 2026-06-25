@@ -387,14 +387,6 @@ class WsBatchSession:
     def _make_result_entry(self, image_id: str) -> dict:
         """Build a single result entry for the WS response."""
         probs = self._results.get(image_id, {})
-        # Keep only real (non-error) prediction keys
-        real_probs = {k: v for k, v in probs.items() if not k.endswith("_error")}
-        if real_probs:
-            # predicted = max(real_probs, key=lambda k: real_probs[k])
-            predicted = real_probs
-        else:
-            predicted = "unknown"
-
         return {
             "image_id": image_id,
             "probabilities": probs,

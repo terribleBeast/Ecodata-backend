@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.features.analyzer.engine import inference_executor, model_cache
 from src.features.analyzer.router import router as analyzer_router
 from src.features.analyzer.ws_router import router as analyzer_ws_router
-from src.features.auth.router import roles_router, users_router
+from src.features.auth.router import roles_router
 from src.features.auth.router import router as auth_router
 from src.features.biochemistry.router import (
     analyses_router,
@@ -52,9 +52,11 @@ from src.features.plants.router import (
 from src.features.research.router import router as research_router
 from src.features.researchers.router import router as researchers_router
 from src.features.taxonomy.router import genera_router, species_router
+from src.shared import rustfs
 from src.shared.auth_dependencies import require_auth, require_auth_for_writes
 from src.shared.auth_middleware import AuthMiddleware
 from src.shared.database import PostgresSession, get_db
+from src.shared.rustfs import rustfs
 from src.utils.logger import log_config
 from starlette.responses import JSONResponse
 
@@ -71,7 +73,7 @@ async def lifespan(app: FastAPI):
 
     await PostgresSession.close()
     model_cache.clear()
-    inference_executor.shutdown(wait=True)      
+    inference_executor.shutdown(wait=True)
 
 
 app = FastAPI(lifespan=lifespan)
@@ -93,7 +95,7 @@ api_router = APIRouter(prefix="/api/v1")
 
 api_router.include_router(auth_router)
 api_router.include_router(roles_router)
-api_router.include_router(users_router)
+
 api_router.include_router(species_router)
 api_router.include_router(genera_router)
 api_router.include_router(logs_router)
@@ -151,3 +153,44 @@ async def validation_exception_handler(request: Request, exc: HTTPException):
 @app.get("/db")
 async def root(db: AsyncSession = Depends(get_db)):
     return {"message": "Database connected!"}
+
+
+@app.get("/rustfs/health")
+async def rustfs_health():
+    result = await rustfs.healthcheck()
+
+    if result["status"] == "error":
+        raise HTTPException(status_code=503, detail=result["message"])
+
+    return result
+
+
+@app.get("/rustfs/config")
+async def rustfs_config():
+    return {
+        "endpoint": rustfs._endpoint_url,
+        "access_key": rustfs._access_key,
+    }
+
+
+import httpx
+
+
+@app.get("/rustfs/http-test")
+async def rustfs_http_test():
+    try:
+        async with httpx.AsyncClient(timeout=5) as client:
+            response = await client.get("http://127.0.0.1:19010/new-data")
+
+        return {
+            "status": "ok",
+            "http_status": response.status_code,
+            "body": response.text,
+        }
+
+    except Exception as exc:
+        return {
+            "status": "error",
+            "exception": type(exc).__name__,
+            "message": str(exc),
+        }

@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from sqlalchemy import ForeignKey, String, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.shared.models import BaseSqlModel
 from src.shared.types import PyUUID
 
@@ -25,7 +25,9 @@ class Species(BaseSqlModel):
         "species_id", UUID, primary_key=True, default=uuid4
     )
     genus_id: Mapped[PyUUID] = mapped_column(
-        UUID, ForeignKey("genera.genus_id", ondelete="RESTRICT")
+        UUID, ForeignKey("genera.genus_id", ondelete="RESTRICT", onupdate="CASCADE")
     )
     latin_name: Mapped[str] = mapped_column(String(150))
     russian_name: Mapped[str | None] = mapped_column(String(150))
+
+    genus: Mapped["Genus"] = relationship(lazy="joined")

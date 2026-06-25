@@ -1,5 +1,6 @@
 from sqlalchemy import insert, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 from src.features.locations.models import (
     Address,
     Country,
@@ -24,10 +25,38 @@ class RegionRepo(SqlRepo):
     def __init__(self, session: AsyncSession):
         super().__init__(Region, session)
 
+    async def get_all(self):
+        stmt = select(self.model).options(selectinload(Region.country))
+        result = await self.session.execute(stmt)
+        return result.scalars().all()
+
+    async def get_by_id(self, id):
+        stmt = (
+            select(self.model)
+            .options(selectinload(Region.country))
+            .where(self.model.id == id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
 
 class DistrictRepo(SqlRepo):
     def __init__(self, session: AsyncSession):
         super().__init__(District, session)
+
+    async def get_all(self):
+        stmt = select(self.model).options(selectinload(District.region))
+        result = await self.session.execute(stmt)
+        return result.scalars().all()
+
+    async def get_by_id(self, id):
+        stmt = (
+            select(self.model)
+            .options(selectinload(District.region))
+            .where(self.model.id == id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
 
 
 class SettlementTypeRepo(SqlRepo):
@@ -38,6 +67,26 @@ class SettlementTypeRepo(SqlRepo):
 class SettlementRepo(SqlRepo):
     def __init__(self, session: AsyncSession):
         super().__init__(Settlement, session)
+
+    async def get_all(self):
+        stmt = select(self.model).options(
+            selectinload(Settlement.district),
+            selectinload(Settlement.settlement_type),
+        )
+        result = await self.session.execute(stmt)
+        return result.scalars().all()
+
+    async def get_by_id(self, id):
+        stmt = (
+            select(self.model)
+            .options(
+                selectinload(Settlement.district),
+                selectinload(Settlement.settlement_type),
+            )
+            .where(self.model.id == id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
 
 
 class StreetRepo(SqlRepo):

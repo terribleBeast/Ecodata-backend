@@ -19,6 +19,9 @@ class NeuralModelService(BaseService[NeuralModelRepo]):
     def __init__(self, repo: NeuralModelRepo):
         self._repo = repo
 
+    async def get_by_species(self, species_id: list[PyUUID]):
+        return await self._repo.get_by_species(species_id)
+
 
 async def get_neural_model_service(
     repo: NeuralModelRepo = Depends(get_neural_model_repo),

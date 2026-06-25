@@ -1,26 +1,23 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends
-from src.features.auth.models import User
 from src.features.auth.schemas import (
     LoginRequest,
     RegisterRequest,
+    ResearcherProfileResponse,
     SystemRoleCreate,
     SystemRoleResponse,
     SystemRoleUpdate,
     TokenResponse,
-    UserResponse,
-    UserUpdate,
 )
 from src.features.auth.service import (
     AuthService,
     SystemRoleService,
-    UserService,
     get_auth_service,
     get_current_user,
     get_system_role_service,
-    get_user_service,
 )
+from src.features.researchers.models import Researcher
 from src.shared.types import PyUUID
 
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -36,9 +33,15 @@ async def register(
 ):
     return await auth.register(
         email=body.email,
-        username=body.username,
         password=body.password,
-        role_id=body.system_role_id,
+        system_role_id=body.system_role_id,
+        first_name=body.first_name,
+        last_name=body.last_name,
+        patronymic=body.patronymic,
+        phone=body.phone,
+        orcid_link=body.orcid_link,
+        job_id=body.job_id,
+        organization_id=body.organization_id,
     )
 
 
@@ -47,11 +50,13 @@ async def login(
     body: LoginRequest,
     auth: Annotated[AuthService, Depends(get_auth_service)],
 ):
-    return await auth.login(body.username, body.password)
+    return await auth.login(body.email, body.password)
 
 
-@router.get("/me", response_model=UserResponse)
-async def me(current_user: Annotated[User, Depends(get_current_user)]):
+@router.get("/me", response_model=ResearcherProfileResponse)
+async def me(
+    current_user: Annotated[Researcher, Depends(get_current_user)],
+):
     return current_user
 
 
@@ -96,42 +101,5 @@ async def role_update(
 async def role_delete(
     id: PyUUID,
     service: Annotated[SystemRoleService, Depends(get_system_role_service)],
-):
-    await service.delete(id)
-
-
-# ── Users (admin) ─────────────────────────────────────────────
-
-users_router = APIRouter(prefix="/users", tags=["users"])
-
-
-@users_router.get("/", response_model=list[UserResponse])
-async def user_list(
-    service: Annotated[UserService, Depends(get_user_service)],
-):
-    return await service.get_all()
-
-
-@users_router.get("/{id}", response_model=UserResponse)
-async def user_get(
-    id: PyUUID,
-    service: Annotated[UserService, Depends(get_user_service)],
-):
-    return await service.get_one(id)
-
-
-@users_router.patch("/{id}", response_model=PyUUID)
-async def user_update(
-    id: PyUUID,
-    item: UserUpdate,
-    service: Annotated[UserService, Depends(get_user_service)],
-):
-    return await service.update(id, item)
-
-
-@users_router.delete("/{id}", status_code=204)
-async def user_delete(
-    id: PyUUID,
-    service: Annotated[UserService, Depends(get_user_service)],
 ):
     await service.delete(id)

@@ -4,7 +4,7 @@
 -- 2. One uploaded image may contain one or more leaves.
 -- 3. Leaf analysis outputs such as masks, contours and keypoints are stored as files
 --    and connected to leaves through leaf_artifacts.
--- 4. Users are separated from researchers: users = authentication/access;
+-- 4. researchers are separated from researchers: researchers = authentication/access;
 --    researchers = domain profile.
 -- 5. Association tables use composite primary keys where appropriate.
 
@@ -48,23 +48,12 @@ BEGIN
 END $$;
 
 -- =========================================================
--- AUTHENTICATION AND USERS
+-- AUTHENTICATION AND researchers
 -- =========================================================
 
 CREATE TABLE IF NOT EXISTS system_roles (
     system_role_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(50) NOT NULL UNIQUE
-);
-
-CREATE TABLE IF NOT EXISTS users (
-    user_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    email VARCHAR(255) NOT NULL UNIQUE,
-    username VARCHAR(100) NOT NULL UNIQUE,
-    password_hash TEXT NOT NULL,
-    system_role_id UUID NOT NULL REFERENCES system_roles(system_role_id) ON UPDATE CASCADE ON DELETE RESTRICT,
-    is_active BOOLEAN NOT NULL DEFAULT TRUE,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 -- =========================================================
@@ -158,9 +147,14 @@ CREATE TABLE IF NOT EXISTS jobs (
 );
 
 CREATE TABLE IF NOT EXISTS researchers (
+
+    -- user fields
     researcher_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL UNIQUE REFERENCES users(user_id)
-        ON UPDATE CASCADE ON DELETE CASCADE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    system_role_id UUID NOT NULL REFERENCES system_roles(system_role_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    -- researcher
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     patronymic VARCHAR(100),
@@ -287,7 +281,7 @@ CREATE TABLE IF NOT EXISTS files (
     mime_type VARCHAR(100),
     size_bytes BIGINT,
     checksum VARCHAR(128),
-    uploaded_by_user_id UUID REFERENCES users(user_id)
+    uploaded_by_researcher_id UUID REFERENCES researchers(researcher_id)
         ON UPDATE CASCADE ON DELETE SET NULL,
     uploaded_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     UNIQUE (bucket, object_key),
@@ -301,7 +295,7 @@ CREATE TABLE IF NOT EXISTS images (
     width_px INTEGER,
     height_px INTEGER,
     image_type image_type NOT NULL DEFAULT 'original',
-    uploaded_by_user_id UUID REFERENCES users(user_id)
+    uploaded_by_researcher_id UUID REFERENCES researchers(researcher_id)
         ON UPDATE CASCADE ON DELETE SET NULL,
     uploaded_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     CONSTRAINT chk_images_width CHECK (width_px IS NULL OR width_px > 0),
@@ -443,7 +437,7 @@ CREATE TABLE IF NOT EXISTS biochemical_analysis_values (
 -- INDEXES
 -- =========================================================
 
-CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_researchers_email ON researchers(email);
 CREATE INDEX IF NOT EXISTS idx_researches_status ON researches(status);
 CREATE INDEX IF NOT EXISTS idx_researches_created_by ON researches(created_by_researcher_id);
 CREATE INDEX IF NOT EXISTS idx_researcher_research_research_id ON researcher_research_association(research_id);
@@ -451,8 +445,8 @@ CREATE INDEX IF NOT EXISTS idx_researcher_research_researcher_id ON researcher_r
 CREATE INDEX IF NOT EXISTS idx_plants_location_id ON plants(location_id);
 CREATE INDEX IF NOT EXISTS idx_leaves_plant_id ON leaves(plant_id);
 CREATE INDEX IF NOT EXISTS idx_leaves_image_id ON leaves(image_id);
-CREATE INDEX IF NOT EXISTS idx_files_uploaded_by ON files(uploaded_by_user_id);
-CREATE INDEX IF NOT EXISTS idx_images_uploaded_by ON images(uploaded_by_user_id);
+CREATE INDEX IF NOT EXISTS idx_files_uploaded_by ON files(uploaded_by_researcher_id);
+CREATE INDEX IF NOT EXISTS idx_images_uploaded_by ON images(uploaded_by_researcher_id);
 CREATE INDEX IF NOT EXISTS idx_leaf_artifacts_leaf_id ON leaf_artifacts(leaf_id);
 CREATE INDEX IF NOT EXISTS idx_leaf_artifacts_file_id ON leaf_artifacts(file_id);
 CREATE INDEX IF NOT EXISTS idx_leaf_artifacts_type ON leaf_artifacts(artifact_type);

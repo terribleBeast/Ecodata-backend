@@ -19,7 +19,8 @@ from contextlib import asynccontextmanager
 from typing import Any
 
 import aioboto3
-from botocore.exceptions import ClientError
+from boto3.session import Config
+from botocore.exceptions import ClientError, EndpointConnectionError
 
 
 class RustFSClient:
@@ -33,10 +34,10 @@ class RustFSClient:
         region: str = "us-east-1",
     ):
         self._endpoint_url = endpoint_url or os.getenv(
-            "RUSTFS_ENDPOINT", "http://localhost:9000"
+            "RUSTFS_ENDPOINT", "http://127.0.0.1:19010"
         )
-        self._access_key = access_key or os.getenv("RUSTFS_ACCESS_KEY", "rustfsadmin")
-        self._secret_key = secret_key or os.getenv("RUSTFS_SECRET_KEY", "rustfsadmin")
+        self._access_key = access_key or os.getenv("RUSTFS_ACCESS_KEY", "admin")
+        self._secret_key = secret_key or os.getenv("RUSTFS_SECRET_KEY", "admin123")
         self._region = region
 
     @asynccontextmanager
@@ -49,6 +50,11 @@ class RustFSClient:
             aws_access_key_id=self._access_key,
             aws_secret_access_key=self._secret_key,
             region_name=self._region,
+            config=Config(
+                signature_version="s3v4",
+                s3={"addressing_style": "path"},
+                retries={"max_attempts": 1},
+            ),
         ) as client:
             yield client
 
@@ -102,6 +108,28 @@ class RustFSClient:
     async def delete_object(self, bucket: str, key: str) -> None:
         async with self._client() as client:
             await client.delete_object(Bucket=bucket, Key=key)
+
+    from botocore.exceptions import ClientError, EndpointConnectionError
+
+    async def healthcheck(self, bucket: str = "new-data") -> dict[str, Any]:
+        try:
+            async with self._client() as client:
+                await client.head_bucket(Bucket=bucket)
+
+            return {
+                "status": "ok",
+                "endpoint": self._endpoint_url,
+                "bucket": bucket,
+            }
+
+        except Exception as exc:
+            return {
+                "status": "error",
+                "endpoint": self._endpoint_url,
+                "bucket": bucket,
+                "exception": type(exc).__name__,
+                "message": str(exc),
+            }
 
 
 # Singleton — one client, shared across requests

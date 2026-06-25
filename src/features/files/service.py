@@ -25,7 +25,7 @@ class FileService(BaseService[FileRepo]):
         self,
         file: UploadFile,
         bucket: str,
-        uploaded_by_user_id: PyUUID | None = None,
+        uploaded_by_researcher_id: PyUUID | None = None,
     ) -> dict:
         """Upload a file to RustFS and store metadata in the database."""
         if not file.filename:
@@ -56,12 +56,12 @@ class FileService(BaseService[FileRepo]):
             {
                 "id": file_id,
                 "bucket": bucket,
-                "object_key": object_key,   
+                "object_key": object_key,
                 "original_filename": file.filename,
                 "mime_type": mime_type,
                 "size_bytes": result["size_bytes"],
                 "checksum": result["checksum"],
-                "uploaded_by_user_id": uploaded_by_user_id,
+                "uploaded_by_researcher_id": uploaded_by_researcher_id,
             }
         )
 

@@ -13,7 +13,7 @@ from sqlalchemy import (
     func,
 )
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.shared.models import BaseSqlModel
 from src.shared.types import PyUUID
 
@@ -41,6 +41,8 @@ class Region(BaseSqlModel):
         UUID, ForeignKey("countries.country_id", ondelete="RESTRICT")
     )
 
+    country: Mapped["Country"] = relationship(lazy="joined")
+
 
 class District(BaseSqlModel):
     __tablename__ = "districts"
@@ -53,6 +55,8 @@ class District(BaseSqlModel):
     region_id: Mapped[PyUUID] = mapped_column(
         UUID, ForeignKey("regions.region_id", ondelete="RESTRICT")
     )
+
+    region: Mapped["Region"] = relationship(lazy="joined")
 
 
 class SettlementType(BaseSqlModel):
@@ -79,6 +83,9 @@ class Settlement(BaseSqlModel):
         UUID,
         ForeignKey("settlement_types.settlement_type_id", ondelete="RESTRICT"),
     )
+
+    district: Mapped["District"] = relationship(lazy="joined")
+    settlement_type: Mapped["SettlementType"] = relationship(lazy="joined")
 
 
 class Street(BaseSqlModel):

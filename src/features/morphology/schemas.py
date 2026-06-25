@@ -5,6 +5,36 @@ from typing import Annotated
 from pydantic import BaseModel, Field
 from src.shared.types import PyUUID
 
+# ── Nested schemas ──────────────────────────────────────────────────
+
+
+class MeasurementUnitNested(BaseModel):
+    measurement_unit_id: PyUUID = Field(validation_alias="id")
+    name: str
+    symbol: str
+
+    model_config = {"from_attributes": True}
+
+
+class MorphologicalFeatureNested(BaseModel):
+    morphological_feature_id: PyUUID = Field(validation_alias="id")
+    name: str
+
+    model_config = {"from_attributes": True}
+
+
+class LeafNested(BaseModel):
+    leaf_id: PyUUID = Field(validation_alias="id")
+
+    model_config = {"from_attributes": True}
+
+
+class NeuralModelNested(BaseModel):
+    neural_model_id: PyUUID = Field(validation_alias="id")
+
+    model_config = {"from_attributes": True}
+
+
 # ── MeasurementUnit ────────────────────────────────────────────────
 
 
@@ -45,7 +75,7 @@ class MorphologicalFeatureRead(BaseModel):
     id: PyUUID
     name: str
     description: str | None
-    default_unit_id: PyUUID | None
+    default_unit: MeasurementUnitNested | None
 
     model_config = {"from_attributes": True}
 

@@ -14,7 +14,7 @@ from sqlalchemy import (
     func,
 )
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.shared.models import BaseSqlModel
 from src.shared.types import PyUUID
 
@@ -36,11 +36,15 @@ class File(BaseSqlModel):
     mime_type: Mapped[str | None] = mapped_column(String(100))
     size_bytes: Mapped[int | None] = mapped_column(BigInteger)
     checksum: Mapped[str | None] = mapped_column(String(128))
-    uploaded_by_user_id: Mapped[PyUUID | None] = mapped_column(
-        UUID, ForeignKey("users.user_id", ondelete="SET NULL")
+    uploaded_by_researcher_id: Mapped[PyUUID | None] = mapped_column(
+        UUID, ForeignKey("researchers.researcher_id", ondelete="SET NULL")
     )
     uploaded_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), default=func.now()
+    )
+
+    uploaded_by: Mapped["Researcher | None"] = relationship(
+        lazy="joined", foreign_keys=[uploaded_by_researcher_id]
     )
 
     __table_args__ = (
@@ -64,9 +68,17 @@ class Image(BaseSqlModel):
         default=ImageTypeEnum.original,
         server_default="original",
     )
-    uploaded_by_user_id: Mapped[PyUUID | None] = mapped_column(
-        UUID, ForeignKey("users.user_id", ondelete="SET NULL")
+    uploaded_by_researcher_id: Mapped[PyUUID | None] = mapped_column(
+        UUID, ForeignKey("researchers.researcher_id", ondelete="SET NULL")
     )
     uploaded_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), default=func.now()
     )
+
+    file: Mapped["File"] = relationship(lazy="joined")
+    uploaded_by: Mapped["Researcher | None"] = relationship(
+        lazy="joined", foreign_keys=[uploaded_by_researcher_id]
+    )
+
+
+from src.features.researchers.models import Researcher  # noqa: E402, F401

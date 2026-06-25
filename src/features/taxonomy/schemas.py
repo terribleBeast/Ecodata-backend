@@ -1,6 +1,7 @@
 from typing import Annotated
 
 from pydantic import BaseModel, Field
+from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
 
 
@@ -14,12 +15,10 @@ class GenusUpdate(BaseModel):
     russian_name: str | None = None
 
 
-class GenusRead(BaseModel):
-    id: PyUUID
+class GenusRead(BaseSchema):
+    genus_id: PyUUID = Field(validation_alias="id")
     latin_name: str
     russian_name: str | None
-
-    model_config = {"from_attributes": True}
 
 
 class SpeciesCreate(BaseModel):
@@ -34,10 +33,13 @@ class SpeciesUpdate(BaseModel):
     genus_id: PyUUID | None = None
 
 
-class SpeciesRead(BaseModel):
-    id: PyUUID
+class GenusNested(BaseSchema):
+    genus_id: PyUUID = Field(validation_alias="id")
+    latin_name: str
+
+
+class SpeciesRead(BaseSchema):
+    species_id: PyUUID = Field(validation_alias="id")
     latin_name: str
     russian_name: str | None
-    genus_id: PyUUID
-
-    model_config = {"from_attributes": True}
+    genus: GenusNested | None = None

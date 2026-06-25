@@ -5,6 +5,50 @@ from typing import Annotated
 from pydantic import BaseModel, Field
 from src.shared.types import PyUUID
 
+# ── Nested schemas ──────────────────────────────────────────────────
+
+
+class OrganizationNested(BaseModel):
+    organization_id: PyUUID = Field(validation_alias="id")
+    name: str
+
+    model_config = {"from_attributes": True}
+
+
+class AddressNested(BaseModel):
+    address_id: PyUUID = Field(validation_alias="id")
+
+    model_config = {"from_attributes": True}
+
+
+class MeasurementUnitNested(BaseModel):
+    measurement_unit_id: PyUUID = Field(validation_alias="id")
+    name: str
+    symbol: str
+
+    model_config = {"from_attributes": True}
+
+
+class PlantNested(BaseModel):
+    plant_id: PyUUID = Field(validation_alias="id")
+
+    model_config = {"from_attributes": True}
+
+
+class LabNested(BaseModel):
+    laboratory_id: PyUUID = Field(validation_alias="id")
+    name: str
+
+    model_config = {"from_attributes": True}
+
+
+class IndicatorNested(BaseModel):
+    biochemical_indicator_id: PyUUID = Field(validation_alias="id")
+    name: str
+
+    model_config = {"from_attributes": True}
+
+
 # ── Laboratory ─────────────────────────────────────────────────
 
 
@@ -23,8 +67,10 @@ class LaboratoryUpdate(BaseModel):
 class LaboratoryResponse(BaseModel):
     id: PyUUID
     name: str
-    organization_id: PyUUID | None
-    address_id: PyUUID | None
+    organization: OrganizationNested | None
+    address: AddressNested | None
+
+    model_config = {"from_attributes": True}
 
 
 # ── BiochemicalIndicator ───────────────────────────────────────
@@ -46,7 +92,9 @@ class BiochemicalIndicatorResponse(BaseModel):
     id: PyUUID
     name: str
     description: str | None
-    default_unit_id: PyUUID | None
+    default_unit: MeasurementUnitNested | None
+
+    model_config = {"from_attributes": True}
 
 
 # ── BiochemicalAnalysis ────────────────────────────────────────
@@ -68,10 +116,12 @@ class BiochemicalAnalysisUpdate(BaseModel):
 
 class BiochemicalAnalysisResponse(BaseModel):
     id: PyUUID
-    plant_id: PyUUID
-    laboratory_id: PyUUID | None
+    plant: PlantNested
+    laboratory: LabNested | None
     analysis_date: date | None
     comment: str | None
+
+    model_config = {"from_attributes": True}
 
 
 # ── BiochemicalAnalysisValue ───────────────────────────────────
@@ -92,6 +142,8 @@ class BiochemicalAnalysisValueUpdate(BaseModel):
 
 class BiochemicalAnalysisValueResponse(BaseModel):
     biochemical_analysis_id: PyUUID
-    biochemical_indicator_id: PyUUID
-    measurement_unit_id: PyUUID | None
+    indicator: IndicatorNested
+    measurement_unit: MeasurementUnitNested | None
     value: Decimal
+
+    model_config = {"from_attributes": True}

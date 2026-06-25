@@ -18,4 +18,4 @@ run_db:
 init_db:
 	pg_ctl.exe init -D $(DB) -U $(USERNAME_DB) -P $(PASSWORD_DB)
 create_db:
-	psql ecodata -U $(USERNAME_DB)  -f $(SCHEMA)
+	psql ecodata -U koval  -f $(SCHEMA)

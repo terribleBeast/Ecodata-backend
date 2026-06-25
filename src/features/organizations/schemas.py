@@ -1,6 +1,8 @@
 from typing import Annotated
 
 from pydantic import BaseModel, Field
+from src.features.locations.schemas import AddressNested
+from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
 
 # ── OrganizationType ──────────────────────────────────────────
@@ -14,8 +16,13 @@ class OrganizationTypeUpdate(BaseModel):
     name: Annotated[str | None, Field(min_length=1, max_length=100)] = None
 
 
-class OrganizationTypeResponse(BaseModel):
-    id: PyUUID
+class OrganizationTypeResponse(BaseSchema):
+    organization_type_id: PyUUID = Field(validation_alias="id")
+    name: str
+
+
+class OrganizationTypeNested(BaseSchema):
+    organization_type_id: PyUUID = Field(validation_alias="id")
     name: str
 
 
@@ -34,8 +41,8 @@ class OrganizationUpdate(BaseModel):
     address_id: PyUUID | None = None
 
 
-class OrganizationResponse(BaseModel):
-    id: PyUUID
+class OrganizationResponse(BaseSchema):
+    organization_id: PyUUID = Field(validation_alias="id")
     name: str
-    organization_type_id: PyUUID | None
-    address_id: PyUUID | None
+    organization_type: OrganizationTypeNested | None
+    address: AddressNested | None

@@ -1,6 +1,7 @@
 from typing import Annotated
 
 from pydantic import BaseModel, Field
+from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
 
 
@@ -14,7 +15,7 @@ class JobUpdate(BaseModel):
     description: str | None = None
 
 
-class JobResponse(BaseModel):
-    id: PyUUID
+class JobResponse(BaseSchema):
+    job_id: PyUUID = Field(validation_alias="id")
     name: str
     description: str | None

@@ -1,5 +1,18 @@
-from pydantic import BaseModel
+from datetime import datetime
+
+from pydantic import BaseModel, Field
+from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
+
+
+class SpeciesNested(BaseModel):
+    species_id: PyUUID = Field(validation_alias="id")
+    latin_name: str
+
+
+class FileNested(BaseModel):
+    file_id: PyUUID = Field(validation_alias="id")
+    original_filename: str | None
 
 
 class NeuralModelCreate(BaseModel):
@@ -19,14 +32,15 @@ class NeuralModelUpdate(BaseModel):
     is_active: bool | None = None
 
 
-class NeuralModelResponse(BaseModel):
-    id: PyUUID
-    file_id: PyUUID
-    species_id: PyUUID | None
+class NeuralModelResponse(BaseSchema):
+    neural_model_id: PyUUID = Field(validation_alias="id")
+    file: FileNested
+    species: SpeciesNested | None
     model_type: str
     input_format: str | None
     output_format: str | None
     is_active: bool
+    created_at: datetime
 
 
 class Prediction(BaseModel):

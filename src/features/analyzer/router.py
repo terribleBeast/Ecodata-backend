@@ -2,7 +2,7 @@ import asyncio
 from collections.abc import Callable, Coroutine
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Depends, UploadFile
+from fastapi import APIRouter, Depends, HTTPException, UploadFile
 from fastapi.responses import JSONResponse
 from src.features.analyzer.engine import (
     async_get_prediction,
@@ -18,6 +18,7 @@ from src.features.files.service import FileService, get_file_service
 from src.features.taxonomy.service import SpeciesService, get_species_service
 from src.shared.rustfs import rustfs
 from src.shared.types import PyUUID
+from starlette.status import HTTP_404_NOT_FOUND
 
 router = APIRouter(prefix="/analyzer", tags=["analyzer"])
 
@@ -27,9 +28,26 @@ router = APIRouter(prefix="/analyzer", tags=["analyzer"])
 
 @router.get("/models", response_model=list[NeuralModelResponse])
 async def neural_model_list(
-    service: Annotated[NeuralModelService, Depends(get_neural_model_service)],
+    neural_model_service: Annotated[
+        NeuralModelService, Depends(get_neural_model_service)
+    ],
+    species_service: Annotated[SpeciesService, Depends(get_species_service)],
+    genus_id: PyUUID | None = None,
 ):
-    return await service.get_all()
+    if genus_id:
+        species_ids = list(
+            map(
+                lambda item: item.species_id,
+                list(await species_service.get_by_genus(genus_id)),
+            )
+        )
+        if not species_ids:
+            raise HTTPException(HTTP_404_NOT_FOUND)
+        result = await neural_model_service.get_by_species(species_ids)
+        if not result:
+            raise HTTPException(HTTP_404_NOT_FOUND)
+        return result
+    return await neural_model_service.get_all()
 
 
 @router.get("/models/{id}", response_model=NeuralModelResponse)

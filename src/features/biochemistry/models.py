@@ -4,7 +4,7 @@ from uuid import uuid4
 
 from sqlalchemy import Date, DateTime, ForeignKey, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.shared.models import BaseSqlModel
 from src.shared.types import PyUUID
 
@@ -25,6 +25,11 @@ class Laboratory(BaseSqlModel):
         UUID, ForeignKey("addresses.address_id", ondelete="SET NULL")
     )
 
+    organization: Mapped["Organization | None"] = relationship(
+        "Organization", lazy="joined"
+    )
+    address: Mapped["Address | None"] = relationship("Address", lazy="joined")
+
 
 # ── BiochemicalIndicator ───────────────────────────────────────
 
@@ -40,6 +45,10 @@ class BiochemicalIndicator(BaseSqlModel):
     default_unit_id: Mapped[PyUUID | None] = mapped_column(
         UUID,
         ForeignKey("measurement_units.measurement_unit_id", ondelete="SET NULL"),
+    )
+
+    default_unit: Mapped["MeasurementUnit | None"] = relationship(
+        "MeasurementUnit", lazy="joined"
     )
 
 
@@ -63,6 +72,9 @@ class BiochemicalAnalysis(BaseSqlModel):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), default=func.now()
     )
+
+    plant: Mapped["Plant"] = relationship("Plant", lazy="joined")
+    laboratory: Mapped["Laboratory | None"] = relationship("Laboratory", lazy="joined")
 
 
 # ── BiochemicalAnalysisValue ───────────────────────────────────
@@ -88,3 +100,20 @@ class BiochemicalAnalysisValue(BaseSqlModel):
         ForeignKey("measurement_units.measurement_unit_id", ondelete="SET NULL"),
     )
     value: Mapped[Decimal] = mapped_column(Numeric(10, 4))
+
+    analysis: Mapped["BiochemicalAnalysis"] = relationship(
+        "BiochemicalAnalysis", lazy="joined"
+    )
+    indicator: Mapped["BiochemicalIndicator"] = relationship(
+        "BiochemicalIndicator", lazy="joined"
+    )
+    measurement_unit: Mapped["MeasurementUnit | None"] = relationship(
+        "MeasurementUnit", lazy="joined"
+    )
+
+
+# ── circular imports ────────────────────────────────────────────────
+from src.features.locations.models import Address  # noqa: E402, F811
+from src.features.morphology.models import MeasurementUnit  # noqa: E402, F811
+from src.features.organizations.models import Organization  # noqa: E402, F811
+from src.features.plants.models import Plant  # noqa: E402, F811
