@@ -141,7 +141,8 @@ class WsBatchSession:
         self.ws = ws
         self.genus = genus
         self.model_map = model_map
-
+        self._next_image_id: str | None = None
+        self._next_index = 0
         # Accumulation buffer
         self._pending = ImageBuffer()
 
@@ -156,6 +157,7 @@ class WsBatchSession:
         # State
         self._pending_image_id: str | None = None
         self._done_received = False
+        self._closed = False
 
     # ── Entry point ───────────────────────────────────────────────
 
@@ -163,13 +165,22 @@ class WsBatchSession:
         try:
             await self._send_ready()
             await self._receive_loop()
-            await self._final_drain()
-            await self._send_complete()
+
+            if not self._closed:
+                await self._final_drain()
+
+            if not self._closed:
+                await self._send_complete()
+
         except WebSocketDisconnect:
             logger.info("Client disconnected — session genus=%r", self.genus)
+
         except Exception:
             logger.exception("Session genus=%r failed", self.genus)
-            await self._send_error("Internal error — session terminated")
+
+            if not self._closed:
+                await self._send_error("Internal error — session terminated")
+
         finally:
             self._pending.clear()
             self._results.clear()
@@ -217,20 +228,36 @@ class WsBatchSession:
             return
 
         msg_type = data.get("type")
+
         if msg_type == "done":
             self._done_received = True
-        elif msg_type == "image_id":
-            self._pending_image_id = str(data.get("id", ""))
+            return
+
+        if msg_type == "image_id":
+            image_id = data.get("id")
+
+            if not isinstance(image_id, str) or not image_id:
+                asyncio.create_task(self._send_error("Invalid image_id"))
+                return
+
+            self._next_image_id = image_id
+            return
 
     async def _handle_image(self, data: bytes) -> None:
-        if self._total_received >= MAX_TOTAL_IMAGES:
+        if self._next_index >= MAX_TOTAL_IMAGES:
             await self._send_error(f"Max images ({MAX_TOTAL_IMAGES}) reached")
             self._done_received = True
             return
 
-        # Resolve image ID — client-provided or auto-generated UUID
-        image_id = self._pending_image_id or str(uuid4())
-        self._pending_image_id = None
+        index = self._next_index
+        self._next_index += 1
+
+        image_id = self._next_image_id or str(uuid4())
+        self._next_image_id = None
+
+        # # Resolve image ID — client-provided or auto-generated UUID
+        # image_id = self._pending_image_id or str(uuid4())
+        # self._pending_image_id = None
 
         # Validate size
         if len(data) > MAX_IMAGE_SIZE_BYTES:
@@ -238,7 +265,8 @@ class WsBatchSession:
                 {
                     "type": "rejected",
                     "image_id": image_id,
-                    "reason": f"Image too large: {len(data)} bytes (max {MAX_IMAGE_SIZE_BYTES})",
+                    "index": index,
+                    "reason": "Unsupported format — only JPEG and PNG are accepted",
                 }
             )
             self._total_failed += 1
@@ -257,12 +285,14 @@ class WsBatchSession:
             return
 
         self._total_received += 1
+
         self._pending.add(image_id, data)
 
         await self._ws_send(
             {
                 "type": "received",
                 "image_id": image_id,
+                "index": index,
                 "size_bytes": len(data),
             }
         )
@@ -308,6 +338,11 @@ class WsBatchSession:
 
         try:
             batch_tensor = await preprocess_parallel(batch.images, inference_executor)
+            logger.info(
+                "Preprocessing completed genus=%r tensor_shape=%s",
+                self.genus,
+                tuple(batch_tensor.shape),
+            )
         except Exception:
             logger.exception("Preprocessing failed genus=%r", self.genus)
             self._total_failed += n
@@ -336,10 +371,22 @@ class WsBatchSession:
                 self._total_failed += n
                 continue
 
+            logger.info(
+                "Inference started genus=%r model=%s images=%d",
+                self.genus,
+                model_key,
+                n,
+            )
             # Chunked forward pass
             try:
                 probs = await predict_batch_chunked(
                     batch_tensor, model, chunk_size=BATCH_CHUNK_SIZE
+                )
+                logger.info(
+                    "Inference completed genus=%r model=%s probs_count=%d",
+                    self.genus,
+                    model_key,
+                    len(probs),
                 )
             except Exception:
                 logger.exception("Inference failed model=%s", model_key)
@@ -362,6 +409,13 @@ class WsBatchSession:
                 }
             )
 
+            logger.info(
+                "Results sent genus=%r model=%s images=%d",
+                self.genus,
+                species,
+                len(batch.image_ids),
+            )
+
         # ── Cleanup ─────────────────────────────────────────────
         del batch_tensor
         batch.clear()
@@ -371,16 +425,39 @@ class WsBatchSession:
         if self._pending:
             await self._drain_pending()
 
+    async def _safe_close(self, code: int, reason: str = "") -> None:
+        if self._closed:
+            return
+
+        self._closed = True
+
+        try:
+            if self.ws.client_state == WebSocketState.CONNECTED:
+                await self.ws.close(code=code, reason=reason[:120])
+        except Exception:
+            logger.debug("WebSocket already closed genus=%r", self.genus)
+
     async def _send_complete(self) -> None:
+        if self._closed:
+            return
+        logger.info(
+            "Complete genus=%r total_received=%d processed=%d failed=%d",
+            self.genus,
+            self._next_index,
+            self._total_processed,
+            self._total_failed,
+        )
+
         await self._ws_send(
             {
                 "type": "complete",
-                "total_received": self._total_received,
+                "total_received": self._next_index,
                 "processed": self._total_processed,
                 "failed": self._total_failed,
             }
         )
-        await self.ws.close(code=1000, reason="Session complete")
+
+        await self._safe_close(code=1000, reason="Session complete")
 
     # ── Helpers ──────────────────────────────────────────────────
 
@@ -393,7 +470,9 @@ class WsBatchSession:
         }
 
     async def _ws_send(self, data: dict) -> None:
-        """Send JSON to client, silently dropping if disconnected."""
+        if self._closed:
+            return
+
         try:
             if self.ws.client_state == WebSocketState.CONNECTED:
                 await self.ws.send_json(data)

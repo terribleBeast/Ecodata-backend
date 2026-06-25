@@ -1,8 +1,7 @@
 """
 Image preprocessing pipeline for batch classification.
 
-All functions are synchronous (run inside thread-pool workers)
-or async wrappers that delegate to the thread pool.
+All functions are synchronous or async wrappers delegated to a thread pool.
 """
 
 from __future__ import annotations
@@ -12,41 +11,46 @@ from concurrent.futures import Executor
 import torch
 from torchvision import transforms as T
 from torchvision.io import ImageReadMode, decode_image
+from torchvision.transforms import InterpolationMode
 
-# ── Reusable pipeline (allocated once, used across threads) ──────────
-# Compose is stateless and callable — safe to share across threads.
+IMAGE_SIZE = (224, 224)
+
 _PIPELINE = T.Compose(
     [
-        T.Resize(224),
-        T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+        T.Resize(
+            IMAGE_SIZE,
+            interpolation=InterpolationMode.BILINEAR,
+            antialias=True,
+        ),
+        T.Normalize(
+            mean=[0.485, 0.456, 0.406],
+            std=[0.229, 0.224, 0.225],
+        ),
     ]
 )
 
 
-# ── Single image ─────────────────────────────────────────────────────
-
-
 def preprocess_one(image_bytes: bytes) -> torch.Tensor:
-    """Decode and preprocess a single JPEG/PNG → tensor [3, 224, 224]."""
-    raw = torch.frombuffer(image_bytes, dtype=torch.uint8)
-    img = decode_image(raw, mode=ImageReadMode.RGB)  # [3, H, W]
-    return _PIPELINE(img / 255.0)  # [3, 224, 224]
+    """Decode and preprocess one JPEG/PNG image -> [3, 224, 224]."""
 
+    # clone() removes the "buffer is not writable" warning.
+    raw = torch.frombuffer(bytearray(image_bytes), dtype=torch.uint8)
 
-# ── Batch (single-threaded) ──────────────────────────────────────────
+    img = decode_image(raw, mode=ImageReadMode.RGB)  # [3, H, W], uint8
+
+    img = img.to(dtype=torch.float32).div_(255.0)  # [0, 1]
+
+    tensor = _PIPELINE(img)  # [3, 224, 224]
+
+    return tensor
 
 
 def preprocess_chunk(image_bytes_list: list[bytes]) -> torch.Tensor:
-    """Decode and preprocess multiple images → tensor [N, 3, 224, 224].
+    """Decode and preprocess multiple images -> [N, 3, 224, 224]."""
 
-    Runs synchronously — intended for a single thread-pool worker.
-    For large batches, prefer :func:`preprocess_parallel`.
-    """
-    tensors = [preprocess_one(b) for b in image_bytes_list]
-    return torch.stack(tensors)
+    tensors = [preprocess_one(image_bytes) for image_bytes in image_bytes_list]
 
-
-# ── Batch (parallelised) ─────────────────────────────────────────────
+    return torch.stack(tensors, dim=0)
 
 
 async def preprocess_parallel(
@@ -55,31 +59,24 @@ async def preprocess_parallel(
     *,
     max_chunk_size: int = 128,
 ) -> torch.Tensor:
-    """Preprocess a large batch in parallel across the executor's workers.
+    """Preprocess a batch in parallel using the provided executor."""
 
-    Splits *image_bytes_list* into chunks, dispatches each chunk to a
-    thread-pool worker, then stacks the results.
-
-    Example
-    -------
-    500 images * 3 ms decode = 1.5 s single-threaded.
-    500 images / 4 workers = ~0.4 s.
-    """
     import asyncio
 
-    n = len(image_bytes_list)
-    if n == 0:
+    if not image_bytes_list:
         raise ValueError("image_bytes_list must not be empty")
 
-    # Chunk the list so each worker gets a slice
-    chunks: list[list[bytes]] = []
-    for start in range(0, n, max_chunk_size):
-        chunks.append(image_bytes_list[start : start + max_chunk_size])
+    chunks: list[list[bytes]] = [
+        image_bytes_list[start : start + max_chunk_size]
+        for start in range(0, len(image_bytes_list), max_chunk_size)
+    ]
 
     loop = asyncio.get_running_loop()
+
     tasks = [
         loop.run_in_executor(executor, preprocess_chunk, chunk) for chunk in chunks
     ]
+
     chunk_tensors = await asyncio.gather(*tasks)
 
-    return torch.cat(chunk_tensors, dim=0)  # [N, 3, 224, 224]
+    return torch.cat(chunk_tensors, dim=0)

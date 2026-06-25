@@ -8,6 +8,7 @@ from src.shared.types import PyUUID
 class SpeciesNested(BaseModel):
     species_id: PyUUID = Field(validation_alias="id")
     latin_name: str
+    russian_name: str
 
 
 class FileNested(BaseModel):

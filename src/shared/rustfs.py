@@ -35,7 +35,7 @@ class RustFSClient:
         region: str = "us-east-1",
     ):
         self._endpoint_url = endpoint_url or os.getenv(
-            "RUSTFS_ENDPOINT", "http://127.0.0.1:19010"
+            "RUSTFS_ENDPOINT", "http://127.0.0.1:9100"
         )
         self._access_key = access_key or os.getenv("RUSTFS_ACCESS_KEY", "admin")
         self._secret_key = secret_key or os.getenv("RUSTFS_SECRET_KEY", "admin123456")

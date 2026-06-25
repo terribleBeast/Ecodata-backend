@@ -99,7 +99,7 @@ async def batch_classification_ws(
                 ):
                     return await rustfs.get_object(bucket, key)
 
-                model_map[sp.latin_name] = (model_key, _loader)
+                model_map[sp.russian_name] = (model_key, _loader)
 
             if not model_map:
                 await ws.send_json(
@@ -111,12 +111,33 @@ async def batch_classification_ws(
             # Preload into cache
             from src.features.analyzer.engine import model_cache
 
+            healthy_model_map = OrderedDict()
+
             for species, (model_key, loader) in model_map.items():
                 try:
                     await model_cache.get(model_key, loader)
-                    logger.info("Preloaded model for %s", species)
+
+                    healthy_model_map[species] = (model_key, loader)
+
+                    logger.info("Preloaded model for {}", species)
                 except Exception:
-                    logger.warning("Preload failed for %s", species)
+                    logger.exception(
+                        "Preload failed for species={} model_key={}",
+                        species,
+                        model_key,
+                    )
+
+            model_map = healthy_model_map
+
+            if not model_map:
+                await ws.send_json(
+                    {
+                        "type": "error",
+                        "message": f"No valid loadable models for genus '{genus_id}'",
+                    }
+                )
+                await ws.close(code=1011)
+                return
 
         session = WsBatchSession(
             ws=ws,

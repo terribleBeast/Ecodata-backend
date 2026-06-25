@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import gc
 import io
 import logging
 import threading
@@ -16,6 +17,9 @@ from torchvision.io import ImageReadMode, decode_image
 from torchvision.models import resnet50
 
 logger = logging.getLogger("app")
+
+GPU_MEMORY_SAFETY_MARGIN_BYTES = 512 * 1024 * 1024  # 512 MiB
+GPU_MODEL_MEMORY_MULTIPLIER = 3.0
 
 # ── Device selection ─────────────────────────────────────────────────
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -95,10 +99,32 @@ class LRUModelCache:
                 checkpoint_bytes,
             )
 
-            model = _build_model(state_dict)
+            estimated_cuda_bytes = _estimate_model_cuda_bytes(state_dict)
 
-            if _is_cuda:
-                _warmup(model)
+            self._ensure_cuda_memory(estimated_cuda_bytes)
+
+            try:
+                model = _build_model(state_dict)
+
+                if _is_cuda:
+                    _warmup(model)
+
+            except RuntimeError as exc:
+                if _is_cuda_oom(exc):
+                    logger.exception(
+                        "CUDA OOM while loading model=%s. Clearing CUDA cache and retrying once.",
+                        model_key,
+                    )
+
+                    self._clear_cuda_memory()
+                    self._ensure_cuda_memory(estimated_cuda_bytes)
+
+                    model = _build_model(state_dict)
+
+                    if _is_cuda:
+                        _warmup(model)
+                else:
+                    raise
 
             self._store(model_key, model)
             return model
@@ -161,6 +187,67 @@ class LRUModelCache:
         else:
             await event.wait()
             yield
+
+    def _ensure_cuda_memory(self, required_bytes: int) -> None:
+        if not _is_cuda:
+            return
+
+        torch.cuda.empty_cache()
+        free_bytes, total_bytes = _get_cuda_free_total_bytes()
+
+        logger.info(
+            "CUDA memory before model load: free=%.1f MiB total=%.1f MiB required=%.1f MiB",
+            _bytes_to_mib(free_bytes),
+            _bytes_to_mib(total_bytes),
+            _bytes_to_mib(required_bytes),
+        )
+
+        while free_bytes < required_bytes:
+            with self._lock:
+                if not self._cache:
+                    break
+
+                lru_key, lru_model = self._cache.popitem(last=False)
+
+            logger.warning(
+                "Not enough CUDA memory. Evicting LRU model before load: %s",
+                lru_key,
+            )
+
+            _evict_model(lru_model)
+
+            gc.collect()
+            torch.cuda.empty_cache()
+
+            free_bytes, total_bytes = _get_cuda_free_total_bytes()
+
+            logger.info(
+                "CUDA memory after eviction: free=%.1f MiB total=%.1f MiB required=%.1f MiB",
+                _bytes_to_mib(free_bytes),
+                _bytes_to_mib(total_bytes),
+                _bytes_to_mib(required_bytes),
+            )
+
+        if free_bytes < required_bytes:
+            raise RuntimeError(
+                "Not enough CUDA memory to load model: "
+                f"free={_bytes_to_mib(free_bytes):.1f} MiB, "
+                f"required={_bytes_to_mib(required_bytes):.1f} MiB, "
+                f"total={_bytes_to_mib(total_bytes):.1f} MiB"
+            )
+
+    def _clear_cuda_memory(self) -> None:
+        if not _is_cuda:
+            return
+
+        with self._lock:
+            while self._cache:
+                lru_key, lru_model = self._cache.popitem(last=False)
+                logger.warning("Evicting cached model after CUDA OOM: %s", lru_key)
+                _evict_model(lru_model)
+
+        gc.collect()
+        torch.cuda.empty_cache()
 
 
 # ── Eviction helpers ─────────────────────────────────────────────────
@@ -263,3 +350,43 @@ def _predict_sync(image_bytes: bytes, model: torch.nn.Module) -> float:
 
     probs = torch.softmax(outputs, dim=1).cpu()
     return float(probs[0][1]) * 100
+
+
+# ──  ───────────────────────────────────────────────────────
+
+
+def _bytes_to_mib(value: int) -> float:
+    return value / 1024 / 1024
+
+
+def _is_cuda_oom(exc: BaseException) -> bool:
+    message = str(exc).lower()
+    return (
+        _is_cuda
+        and isinstance(exc, RuntimeError)
+        and (
+            "cuda out of memory" in message or "cublas" in message or "cudnn" in message
+        )
+    )
+
+
+def _get_cuda_free_total_bytes() -> tuple[int, int]:
+    if not _is_cuda:
+        return 0, 0
+
+    return torch.cuda.mem_get_info()
+
+
+def _estimate_model_cuda_bytes(checkpoint: dict) -> int:
+    state_dict = checkpoint.get("model_state_dict", checkpoint)
+
+    model_bytes = 0
+
+    for value in state_dict.values():
+        if torch.is_tensor(value):
+            model_bytes += value.numel() * value.element_size()
+
+    estimated = int(model_bytes * GPU_MODEL_MEMORY_MULTIPLIER)
+    estimated += GPU_MEMORY_SAFETY_MARGIN_BYTES
+
+    return estimated

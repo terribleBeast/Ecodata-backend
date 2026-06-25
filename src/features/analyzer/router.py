@@ -133,7 +133,7 @@ async def get_predictions(
 ):
     # 1. Look up all plant species for this genus
     species_list = [
-        (item.id, item.latin_name)
+        (item.id, item.russian_name)
         for item in await species_service.search_by_field("genus_id", genus_id)
     ]
 

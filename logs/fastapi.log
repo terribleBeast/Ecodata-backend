@@ -279,3 +279,1072 @@
 2026-06-25 18:30:57 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
 2026-06-25 18:43:08 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
 2026-06-25 19:25:40 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:29:20 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 5 images
+2026-06-25 20:29:21 [ERROR] app: Preprocessing failed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f'
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 310, in _drain_pending
+    batch_tensor = await preprocess_parallel(batch.images, inference_executor)
+  File "D:\projects\EcoData\backend\src\features\analyzer\preprocessing.py", line 83, in preprocess_parallel
+    chunk_tensors = await asyncio.gather(*tasks)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\preprocessing.py", line 46, in preprocess_chunk
+    return torch.stack(tensors)
+RuntimeError: stack expects each tensor to be equal size, but got [3, 224, 340] at entry 0 and [3, 259, 224] at entry 1
+2026-06-25 20:29:21 [ERROR] app: Session genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' failed
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 167, in run
+    await self._send_complete()
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 383, in _send_complete
+    await self.ws.close(code=1000, reason="Session complete")
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\starlette\websockets.py", line 181, in close
+    await self.send({"type": "websocket.close", "code": code, "reason": reason or ""})
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\starlette\websockets.py", line 98, in send
+    raise RuntimeError('Cannot call "send" once a close message has been sent.')
+RuntimeError: Cannot call "send" once a close message has been sent.
+2026-06-25 20:37:59 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:44:19 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 1/2)
+2026-06-25 20:44:20 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 18 images
+2026-06-25 20:44:21 [ERROR] app: Preprocessing failed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f'
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 310, in _drain_pending
+    batch_tensor = await preprocess_parallel(batch.images, inference_executor)
+  File "D:\projects\EcoData\backend\src\features\analyzer\preprocessing.py", line 83, in preprocess_parallel
+    chunk_tensors = await asyncio.gather(*tasks)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\preprocessing.py", line 46, in preprocess_chunk
+    return torch.stack(tensors)
+RuntimeError: stack expects each tensor to be equal size, but got [3, 259, 224] at entry 0 and [3, 240, 224] at entry 2
+2026-06-25 20:44:21 [ERROR] app: Session genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' failed
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 167, in run
+    await self._send_complete()
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 383, in _send_complete
+    await self.ws.close(code=1000, reason="Session complete")
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\starlette\websockets.py", line 181, in close
+    await self.send({"type": "websocket.close", "code": code, "reason": reason or ""})
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\starlette\websockets.py", line 98, in send
+    raise RuntimeError('Cannot call "send" once a close message has been sent.')
+RuntimeError: Cannot call "send" once a close message has been sent.
+2026-06-25 20:49:20 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:49:54 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:50:06 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:50:32 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:50:43 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:51:07 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:51:20 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:52:45 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:53:13 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:54:45 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 20:55:23 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 1/2)
+2026-06-25 20:55:23 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 11 images
+2026-06-25 20:59:30 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:00:54 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:01:22 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:01:31 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:01:53 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:02:58 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:03:28 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 1/2)
+2026-06-25 21:03:28 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 11 images
+2026-06-25 21:03:28 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(11, 3, 224, 224)
+2026-06-25 21:03:28 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=11
+2026-06-25 21:03:28 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=11
+2026-06-25 21:03:28 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=11
+2026-06-25 21:03:28 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=0 processed=11 failed=0
+2026-06-25 21:15:27 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 3 images
+2026-06-25 21:15:27 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(3, 3, 224, 224)
+2026-06-25 21:15:27 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=3
+2026-06-25 21:15:27 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=3
+2026-06-25 21:15:27 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=3
+2026-06-25 21:15:27 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=0 processed=3 failed=0
+2026-06-25 21:15:58 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 3 images
+2026-06-25 21:15:58 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(3, 3, 224, 224)
+2026-06-25 21:15:58 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=3
+2026-06-25 21:15:58 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=3
+2026-06-25 21:15:58 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=3
+2026-06-25 21:15:58 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=0 processed=3 failed=0
+2026-06-25 21:17:26 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 11 images
+2026-06-25 21:17:27 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(11, 3, 224, 224)
+2026-06-25 21:17:27 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=11
+2026-06-25 21:17:27 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=11
+2026-06-25 21:17:27 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=11
+2026-06-25 21:17:27 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=0 processed=11 failed=0
+2026-06-25 21:18:49 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 46 images
+2026-06-25 21:18:50 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(46, 3, 224, 224)
+2026-06-25 21:18:50 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=46
+2026-06-25 21:18:51 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=46
+2026-06-25 21:18:51 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=46
+2026-06-25 21:18:51 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=0 processed=46 failed=0
+2026-06-25 21:22:16 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 9 images
+2026-06-25 21:22:16 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(9, 3, 224, 224)
+2026-06-25 21:22:16 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=9
+2026-06-25 21:22:16 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=9
+2026-06-25 21:22:16 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=9
+2026-06-25 21:22:16 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=0 processed=9 failed=0
+2026-06-25 21:22:42 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 18 images
+2026-06-25 21:22:43 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(18, 3, 224, 224)
+2026-06-25 21:22:43 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=18
+2026-06-25 21:22:44 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=18
+2026-06-25 21:22:44 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=18
+2026-06-25 21:22:44 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=0 processed=18 failed=0
+2026-06-25 21:25:22 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:25:31 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:27:32 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:28:04 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:29:44 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:33:46 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 1/2)
+2026-06-25 21:33:46 [ERROR] app: Session genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' failed
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 167, in run
+    await self._receive_loop()
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 219, in _receive_loop
+    await self._handle_image(message["bytes"])
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 289, in _handle_image
+    self._pending.add(index, image_id, "unknown.jpg", data)
+TypeError: ImageBuffer.add() takes 3 positional arguments but 5 were given
+2026-06-25 21:37:37 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 21:38:04 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 1/2)
+2026-06-25 21:38:04 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 1 images
+2026-06-25 21:38:04 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(1, 3, 224, 224)
+2026-06-25 21:38:04 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=1
+2026-06-25 21:38:04 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=1
+2026-06-25 21:38:04 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=1
+2026-06-25 21:38:04 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=1 processed=1 failed=0
+2026-06-25 21:51:47 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 21:51:48 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 21:51:48 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 21:51:48 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 46 images
+2026-06-25 21:51:50 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(46, 3, 224, 224)
+2026-06-25 21:51:51 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 21:51:51 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 21:51:51 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=46
+2026-06-25 21:51:52 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=46
+2026-06-25 21:51:52 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=46
+2026-06-25 21:51:53 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 21:51:53 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 21:51:53 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=46
+2026-06-25 21:51:53 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=46
+2026-06-25 21:51:53 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Suvenir Altaya images=46
+2026-06-25 21:51:54 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 21:51:54 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 21:51:54 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=46
+2026-06-25 21:51:54 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=46
+2026-06-25 21:51:54 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Uralskoe nalivnoe images=46
+2026-06-25 21:51:54 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=46 processed=138 failed=0
+2026-06-25 22:16:37 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 22:16:37 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-25 22:16:38 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 22:16:38 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 22:16:39 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 22:16:39 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 22:16:40 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 22:16:40 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 22:16:41 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 22:16:41 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 22:16:42 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 22:16:42 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 22:16:43 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 22:16:43 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 22:16:44 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 22:16:44 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 22:16:46 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 22:16:46 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-25 22:16:47 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 22:16:47 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 22:16:47 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 46 images
+2026-06-25 22:16:48 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(46, 3, 224, 224)
+2026-06-25 22:16:49 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-25 22:16:49 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-25 22:16:49 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=46
+2026-06-25 22:16:50 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=46
+2026-06-25 22:16:50 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=46
+2026-06-25 22:16:51 [INFO] app: Evicting LRU model: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-25 22:16:51 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 22:16:51 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=46
+2026-06-25 22:16:51 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=46
+2026-06-25 22:16:51 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskoe rumyanoe images=46
+2026-06-25 22:16:52 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 22:16:52 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 22:16:52 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=46
+2026-06-25 22:16:52 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=46
+2026-06-25 22:16:52 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskoe zimnee images=46
+2026-06-25 22:16:53 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 22:16:53 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 22:16:53 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=46
+2026-06-25 22:16:54 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=46
+2026-06-25 22:16:54 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=46
+2026-06-25 22:16:54 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 22:16:54 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 22:16:55 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=46
+2026-06-25 22:16:55 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=46
+2026-06-25 22:16:55 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Podarok sadovodam images=46
+2026-06-25 22:16:56 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 22:16:56 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 22:16:56 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=46
+2026-06-25 22:16:56 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=46
+2026-06-25 22:16:56 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Suvenir Altaya images=46
+2026-06-25 22:16:57 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 22:16:57 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 22:16:57 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=46
+2026-06-25 22:16:57 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=46
+2026-06-25 22:16:57 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Uralskoe nalivnoe images=46
+2026-06-25 22:16:58 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 22:16:58 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 22:16:58 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=46
+2026-06-25 22:16:58 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=46
+2026-06-25 22:16:58 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zavetnoe images=46
+2026-06-25 22:17:00 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 22:17:00 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-25 22:17:00 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=46
+2026-06-25 22:17:00 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=46
+2026-06-25 22:17:00 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhar-ptitsa images=46
+2026-06-25 22:17:01 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 22:17:01 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 22:17:01 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=46
+2026-06-25 22:17:01 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=46
+2026-06-25 22:17:01 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=46
+2026-06-25 22:17:01 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=46 processed=460 failed=0
+2026-06-25 22:20:21 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-25 22:20:21 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-25 22:20:22 [INFO] app: Evicting LRU model: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-25 22:20:22 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 22:20:23 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 22:20:23 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 22:20:24 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 22:20:24 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 22:20:25 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 22:20:25 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 22:20:26 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 22:20:26 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 22:20:27 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 22:20:27 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 22:20:28 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 22:20:28 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 22:20:29 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 22:20:29 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-25 22:20:30 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 22:20:30 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 22:21:05 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 64 images
+2026-06-25 22:21:08 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(64, 3, 224, 224)
+2026-06-25 22:21:09 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-25 22:21:09 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-25 22:21:09 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=64
+2026-06-25 22:21:10 [ERROR] app: Inference failed model=771746fe-0650-40f7-8b2b-ac761b2fbbeb
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:10 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=64
+2026-06-25 22:21:11 [ERROR] app: Model 8c478faa-046c-461c-a462-14b5f6928a16 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:12 [ERROR] app: Model 251ff1cf-3c6c-4989-bd81-f95d20d0b447 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:13 [ERROR] app: Model 1145f653-13c4-41d2-9d0c-2514cb0e56b7 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:14 [ERROR] app: Model 8f180d1a-a5eb-443c-ba73-929ff7a83b7e load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:15 [ERROR] app: Model 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:16 [ERROR] app: Model c8fc277c-6074-4d4f-b911-c9925c8c300b load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:17 [ERROR] app: Model ee95fe6a-03a1-4b68-966b-0437b67bc4fa load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:18 [ERROR] app: Model bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:18 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=64
+2026-06-25 22:21:18 [ERROR] app: Inference failed model=a9c592ab-6600-4fb8-86aa-02cdbd929850
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:18 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=64
+2026-06-25 22:21:35 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 64 images
+2026-06-25 22:21:38 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(64, 3, 224, 224)
+2026-06-25 22:21:38 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=64
+2026-06-25 22:21:38 [ERROR] app: Inference failed model=771746fe-0650-40f7-8b2b-ac761b2fbbeb
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.35 GiB already allocated; 0 bytes free; 3.37 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:38 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=64
+2026-06-25 22:21:39 [ERROR] app: Model 8c478faa-046c-461c-a462-14b5f6928a16 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:40 [ERROR] app: Model 251ff1cf-3c6c-4989-bd81-f95d20d0b447 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:41 [ERROR] app: Model 1145f653-13c4-41d2-9d0c-2514cb0e56b7 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:42 [ERROR] app: Model 8f180d1a-a5eb-443c-ba73-929ff7a83b7e load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:43 [ERROR] app: Model 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:44 [ERROR] app: Model c8fc277c-6074-4d4f-b911-c9925c8c300b load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:45 [ERROR] app: Model ee95fe6a-03a1-4b68-966b-0437b67bc4fa load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:46 [ERROR] app: Model bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:46 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=64
+2026-06-25 22:21:46 [ERROR] app: Inference failed model=a9c592ab-6600-4fb8-86aa-02cdbd929850
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:46 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=64
+2026-06-25 22:21:55 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 64 images
+2026-06-25 22:21:58 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(64, 3, 224, 224)
+2026-06-25 22:21:58 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=64
+2026-06-25 22:21:58 [ERROR] app: Inference failed model=771746fe-0650-40f7-8b2b-ac761b2fbbeb
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.35 GiB already allocated; 0 bytes free; 3.37 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:21:58 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=64
+2026-06-25 22:22:00 [ERROR] app: Model 8c478faa-046c-461c-a462-14b5f6928a16 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:00 [ERROR] app: Model 251ff1cf-3c6c-4989-bd81-f95d20d0b447 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:01 [ERROR] app: Model 1145f653-13c4-41d2-9d0c-2514cb0e56b7 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:02 [ERROR] app: Model 8f180d1a-a5eb-443c-ba73-929ff7a83b7e load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:03 [ERROR] app: Model 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:04 [ERROR] app: Model c8fc277c-6074-4d4f-b911-c9925c8c300b load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:05 [ERROR] app: Model ee95fe6a-03a1-4b68-966b-0437b67bc4fa load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:06 [ERROR] app: Model bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:06 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=64
+2026-06-25 22:22:06 [ERROR] app: Inference failed model=a9c592ab-6600-4fb8-86aa-02cdbd929850
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:06 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=64
+2026-06-25 22:22:10 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 64 images
+2026-06-25 22:22:14 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(64, 3, 224, 224)
+2026-06-25 22:22:14 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=64
+2026-06-25 22:22:14 [ERROR] app: Inference failed model=771746fe-0650-40f7-8b2b-ac761b2fbbeb
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.35 GiB already allocated; 0 bytes free; 3.37 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:14 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=64
+2026-06-25 22:22:16 [ERROR] app: Model 8c478faa-046c-461c-a462-14b5f6928a16 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:17 [ERROR] app: Model 251ff1cf-3c6c-4989-bd81-f95d20d0b447 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:18 [ERROR] app: Model 1145f653-13c4-41d2-9d0c-2514cb0e56b7 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:19 [ERROR] app: Model 8f180d1a-a5eb-443c-ba73-929ff7a83b7e load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:20 [ERROR] app: Model 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:21 [ERROR] app: Model c8fc277c-6074-4d4f-b911-c9925c8c300b load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:22 [ERROR] app: Model ee95fe6a-03a1-4b68-966b-0437b67bc4fa load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:23 [ERROR] app: Model bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:23 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=64
+2026-06-25 22:22:23 [ERROR] app: Inference failed model=a9c592ab-6600-4fb8-86aa-02cdbd929850
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:23 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=64
+2026-06-25 22:22:27 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 64 images
+2026-06-25 22:22:31 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(64, 3, 224, 224)
+2026-06-25 22:22:31 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=64
+2026-06-25 22:22:31 [ERROR] app: Inference failed model=771746fe-0650-40f7-8b2b-ac761b2fbbeb
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.35 GiB already allocated; 0 bytes free; 3.37 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:31 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=64
+2026-06-25 22:22:32 [ERROR] app: Model 8c478faa-046c-461c-a462-14b5f6928a16 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:33 [ERROR] app: Model 251ff1cf-3c6c-4989-bd81-f95d20d0b447 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:34 [ERROR] app: Model 1145f653-13c4-41d2-9d0c-2514cb0e56b7 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:34 [ERROR] app: Model 8f180d1a-a5eb-443c-ba73-929ff7a83b7e load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:35 [ERROR] app: Model 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:36 [ERROR] app: Model c8fc277c-6074-4d4f-b911-c9925c8c300b load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:37 [ERROR] app: Model ee95fe6a-03a1-4b68-966b-0437b67bc4fa load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:38 [ERROR] app: Model bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:38 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=64
+2026-06-25 22:22:38 [ERROR] app: Inference failed model=a9c592ab-6600-4fb8-86aa-02cdbd929850
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:38 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=64
+2026-06-25 22:22:46 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 64 images
+2026-06-25 22:22:50 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(64, 3, 224, 224)
+2026-06-25 22:22:50 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=64
+2026-06-25 22:22:50 [ERROR] app: Inference failed model=771746fe-0650-40f7-8b2b-ac761b2fbbeb
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.35 GiB already allocated; 0 bytes free; 3.37 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:50 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=64
+2026-06-25 22:22:51 [ERROR] app: Model 8c478faa-046c-461c-a462-14b5f6928a16 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:53 [ERROR] app: Model 251ff1cf-3c6c-4989-bd81-f95d20d0b447 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:54 [ERROR] app: Model 1145f653-13c4-41d2-9d0c-2514cb0e56b7 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:55 [ERROR] app: Model 8f180d1a-a5eb-443c-ba73-929ff7a83b7e load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:56 [ERROR] app: Model 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:57 [ERROR] app: Model c8fc277c-6074-4d4f-b911-c9925c8c300b load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:22:58 [ERROR] app: Model ee95fe6a-03a1-4b68-966b-0437b67bc4fa load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:00 [ERROR] app: Model bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:00 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=64
+2026-06-25 22:23:00 [ERROR] app: Inference failed model=a9c592ab-6600-4fb8-86aa-02cdbd929850
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:00 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=64
+2026-06-25 22:23:11 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 64 images
+2026-06-25 22:23:15 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(64, 3, 224, 224)
+2026-06-25 22:23:15 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=64
+2026-06-25 22:23:15 [ERROR] app: Inference failed model=771746fe-0650-40f7-8b2b-ac761b2fbbeb
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.35 GiB already allocated; 0 bytes free; 3.37 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:15 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=64
+2026-06-25 22:23:16 [ERROR] app: Model 8c478faa-046c-461c-a462-14b5f6928a16 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:17 [ERROR] app: Model 251ff1cf-3c6c-4989-bd81-f95d20d0b447 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:18 [ERROR] app: Model 1145f653-13c4-41d2-9d0c-2514cb0e56b7 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:19 [ERROR] app: Model 8f180d1a-a5eb-443c-ba73-929ff7a83b7e load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:20 [ERROR] app: Model 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:22 [ERROR] app: Model c8fc277c-6074-4d4f-b911-c9925c8c300b load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:23 [ERROR] app: Model ee95fe6a-03a1-4b68-966b-0437b67bc4fa load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:24 [ERROR] app: Model bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:24 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=64
+2026-06-25 22:23:24 [ERROR] app: Inference failed model=a9c592ab-6600-4fb8-86aa-02cdbd929850
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:24 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=64
+2026-06-25 22:23:26 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 53 images
+2026-06-25 22:23:29 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(53, 3, 224, 224)
+2026-06-25 22:23:29 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=53
+2026-06-25 22:23:29 [ERROR] app: Inference failed model=771746fe-0650-40f7-8b2b-ac761b2fbbeb
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.35 GiB already allocated; 0 bytes free; 3.37 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:29 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=53
+2026-06-25 22:23:30 [ERROR] app: Model 8c478faa-046c-461c-a462-14b5f6928a16 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:31 [ERROR] app: Model 251ff1cf-3c6c-4989-bd81-f95d20d0b447 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:33 [ERROR] app: Model 1145f653-13c4-41d2-9d0c-2514cb0e56b7 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:34 [ERROR] app: Model 8f180d1a-a5eb-443c-ba73-929ff7a83b7e load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:35 [ERROR] app: Model 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:36 [ERROR] app: Model c8fc277c-6074-4d4f-b911-c9925c8c300b load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:37 [ERROR] app: Model ee95fe6a-03a1-4b68-966b-0437b67bc4fa load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:38 [ERROR] app: Model bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c load failed: CUDA out of memory. Tried to allocate 20.00 MiB (GPU 0; 4.00 GiB total capacity; 3.39 GiB already allocated; 0 bytes free; 3.41 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:38 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=53
+2026-06-25 22:23:38 [ERROR] app: Inference failed model=a9c592ab-6600-4fb8-86aa-02cdbd929850
+Traceback (most recent call last):
+  File "D:\projects\EcoData\backend\src\features\analyzer\ws_session.py", line 382, in _drain_pending
+    probs = await predict_batch_chunked(
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 89, in predict_batch_chunked
+    probs = await predict_batch_async(chunk, model)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 64, in predict_batch_async
+    return await asyncio.wait_for(fut, timeout=INFERENCE_TIMEOUT_SECONDS)
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\asyncio\tasks.py", line 445, in wait_for
+    return fut.result()
+  File "C:\Users\koval\AppData\Local\Python\pythoncore-3.10-64\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\projects\EcoData\backend\src\features\analyzer\inference.py", line 40, in predict_batch
+    outputs = model(chunk)  # [K, 2]
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "D:\projects\EcoData\backend\.venv\lib\site-packages\torch\nn\modules\conv.py", line 459, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GPU 0; 4.00 GiB total capacity; 3.33 GiB already allocated; 0 bytes free; 3.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+2026-06-25 22:23:38 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=53
+2026-06-25 22:23:38 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=501 processed=1002 failed=5010
+2026-06-25 22:24:31 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-25 22:24:31 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-25 22:24:31 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=4
+2026-06-25 22:24:32 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=4
+2026-06-25 22:24:32 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=4
+2026-06-25 22:24:32 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-25 22:24:32 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-25 22:24:32 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=4
+2026-06-25 22:24:32 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=8 failed=0
+2026-06-25 22:26:08 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-25 22:26:09 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 22:26:10 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 22:26:10 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 22:26:11 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 22:26:11 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 22:26:13 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 22:26:13 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 22:26:14 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 22:26:14 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 22:26:15 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 22:26:15 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 22:26:16 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 22:26:16 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 22:26:17 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 22:26:17 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-25 22:26:18 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 22:26:18 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 22:26:18 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-25 22:26:18 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-25 22:26:19 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-25 22:26:19 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-25 22:26:19 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=4
+2026-06-25 22:26:20 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=4
+2026-06-25 22:26:20 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskaya krasavitsa images=4
+2026-06-25 22:26:21 [INFO] app: Evicting LRU model: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-25 22:26:21 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 22:26:21 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=4
+2026-06-25 22:26:21 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=4
+2026-06-25 22:26:21 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskoe rumyanoe images=4
+2026-06-25 22:26:22 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 22:26:22 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 22:26:22 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=4
+2026-06-25 22:26:22 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=4
+2026-06-25 22:26:22 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Altayskoe zimnee images=4
+2026-06-25 22:26:23 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 22:26:23 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 22:26:23 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=4
+2026-06-25 22:26:23 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=4
+2026-06-25 22:26:23 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Feniks Altaiskiy images=4
+2026-06-25 22:26:24 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 22:26:24 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 22:26:24 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=4
+2026-06-25 22:26:24 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=4
+2026-06-25 22:26:24 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Podarok sadovodam images=4
+2026-06-25 22:26:26 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 22:26:26 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 22:26:26 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=4
+2026-06-25 22:26:26 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=4
+2026-06-25 22:26:26 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Suvenir Altaya images=4
+2026-06-25 22:26:28 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 22:26:28 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 22:26:28 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=4
+2026-06-25 22:26:28 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=4
+2026-06-25 22:26:28 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Uralskoe nalivnoe images=4
+2026-06-25 22:26:29 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 22:26:29 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 22:26:29 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=4
+2026-06-25 22:26:29 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=4
+2026-06-25 22:26:29 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zavetnoe images=4
+2026-06-25 22:26:30 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 22:26:30 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-25 22:26:30 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=4
+2026-06-25 22:26:30 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=4
+2026-06-25 22:26:30 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhar-ptitsa images=4
+2026-06-25 22:26:32 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 22:26:32 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 22:26:32 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-25 22:26:32 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-25 22:26:32 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Zhebrovskoe images=4
+2026-06-25 22:26:32 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=40 failed=0
+2026-06-25 22:28:33 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 22:29:04 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 22:29:27 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-25 22:29:28 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 22:29:29 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 22:29:29 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 22:29:30 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 22:29:30 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 22:29:31 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 22:29:31 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 22:29:32 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 22:29:32 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 22:29:33 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 22:29:33 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 22:29:34 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 22:29:34 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 22:29:35 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 22:29:35 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-25 22:29:36 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 22:29:36 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 22:29:36 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-25 22:29:37 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-25 22:29:38 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-25 22:29:38 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-25 22:29:38 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=4
+2026-06-25 22:29:38 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=4
+2026-06-25 22:29:38 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=јлтайска€ красавица images=4
+2026-06-25 22:29:39 [INFO] app: Evicting LRU model: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-25 22:29:39 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 22:29:39 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=4
+2026-06-25 22:29:39 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=4
+2026-06-25 22:29:39 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=јлтайское рум€ное images=4
+2026-06-25 22:29:40 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 22:29:40 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 22:29:40 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=4
+2026-06-25 22:29:40 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=4
+2026-06-25 22:29:40 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=јлтайское зимнее images=4
+2026-06-25 22:29:41 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 22:29:41 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 22:29:41 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=4
+2026-06-25 22:29:41 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=4
+2026-06-25 22:29:41 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=‘еникс јлтайский images=4
+2026-06-25 22:29:42 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 22:29:42 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 22:29:42 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=4
+2026-06-25 22:29:42 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=4
+2026-06-25 22:29:42 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ѕодарок садоводам images=4
+2026-06-25 22:29:43 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 22:29:43 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 22:29:43 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=4
+2026-06-25 22:29:44 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=4
+2026-06-25 22:29:44 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=—увенир јлта€ images=4
+2026-06-25 22:29:45 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 22:29:45 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 22:29:45 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=4
+2026-06-25 22:29:45 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=4
+2026-06-25 22:29:45 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=”ральское наливное images=4
+2026-06-25 22:29:46 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 22:29:46 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 22:29:46 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=4
+2026-06-25 22:29:46 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=4
+2026-06-25 22:29:46 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=«аветное images=4
+2026-06-25 22:29:47 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 22:29:47 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-25 22:29:47 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=4
+2026-06-25 22:29:47 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=4
+2026-06-25 22:29:47 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ар-птица images=4
+2026-06-25 22:29:48 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 22:29:48 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 22:29:48 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-25 22:29:48 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-25 22:29:48 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ебровское images=4
+2026-06-25 22:29:48 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=40 failed=0
+2026-06-25 23:26:22 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 23:40:46 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
+2026-06-25 23:41:10 [INFO] app: CUDA memory before model load: free=3317.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:35 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-25 23:41:35 [INFO] app: CUDA memory before model load: free=2343.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:36 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 23:41:36 [INFO] app: CUDA memory before model load: free=2245.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:37 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 23:41:37 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 23:41:38 [INFO] app: CUDA memory before model load: free=2147.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:38 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 23:41:38 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 23:41:39 [INFO] app: CUDA memory before model load: free=2071.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:39 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 23:41:39 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 23:41:40 [INFO] app: CUDA memory before model load: free=1973.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:40 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 23:41:40 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 23:41:41 [INFO] app: CUDA memory before model load: free=1875.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:42 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 23:41:42 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 23:41:42 [INFO] app: CUDA memory before model load: free=1777.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:43 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 23:41:43 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 23:41:44 [INFO] app: CUDA memory before model load: free=1701.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:44 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 23:41:44 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-25 23:41:45 [INFO] app: CUDA memory before model load: free=1603.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:45 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 23:41:45 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 23:41:45 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-25 23:41:46 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-25 23:41:47 [INFO] app: CUDA memory before model load: free=1505.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:47 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-25 23:41:47 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-25 23:41:47 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=4
+2026-06-25 23:41:47 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=4
+2026-06-25 23:41:47 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=јлтайска€ красавица images=4
+2026-06-25 23:41:48 [INFO] app: CUDA memory before model load: free=1377.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:48 [INFO] app: Evicting LRU model: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-25 23:41:48 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-25 23:41:48 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=4
+2026-06-25 23:41:48 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=4
+2026-06-25 23:41:48 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=јлтайское рум€ное images=4
+2026-06-25 23:41:49 [INFO] app: CUDA memory before model load: free=1299.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:50 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-25 23:41:50 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-25 23:41:50 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=4
+2026-06-25 23:41:50 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=4
+2026-06-25 23:41:50 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=јлтайское зимнее images=4
+2026-06-25 23:41:50 [INFO] app: CUDA memory before model load: free=1201.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:51 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-25 23:41:51 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-25 23:41:51 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=4
+2026-06-25 23:41:51 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=4
+2026-06-25 23:41:51 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=‘еникс јлтайский images=4
+2026-06-25 23:41:51 [INFO] app: CUDA memory before model load: free=1103.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:52 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-25 23:41:52 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-25 23:41:52 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=4
+2026-06-25 23:41:52 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=4
+2026-06-25 23:41:52 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ѕодарок садоводам images=4
+2026-06-25 23:41:53 [INFO] app: CUDA memory before model load: free=1027.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:53 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-25 23:41:53 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-25 23:41:53 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=4
+2026-06-25 23:41:53 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=4
+2026-06-25 23:41:53 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=—увенир јлта€ images=4
+2026-06-25 23:41:54 [INFO] app: CUDA memory before model load: free=929.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:54 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-25 23:41:54 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-25 23:41:54 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=4
+2026-06-25 23:41:54 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=4
+2026-06-25 23:41:54 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=”ральское наливное images=4
+2026-06-25 23:41:55 [INFO] app: CUDA memory before model load: free=831.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:55 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-25 23:41:55 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-25 23:41:55 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=4
+2026-06-25 23:41:55 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=4
+2026-06-25 23:41:55 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=«аветное images=4
+2026-06-25 23:41:56 [INFO] app: CUDA memory before model load: free=735.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:56 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-25 23:41:56 [INFO] app: CUDA memory after eviction: free=767.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:56 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-25 23:41:56 [INFO] app: CUDA memory after eviction: free=929.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:57 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-25 23:41:57 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=4
+2026-06-25 23:41:57 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=4
+2026-06-25 23:41:57 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ар-птица images=4
+2026-06-25 23:41:57 [INFO] app: CUDA memory before model load: free=831.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-25 23:41:58 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-25 23:41:58 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-25 23:41:58 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-25 23:41:58 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ебровское images=4
+2026-06-25 23:41:58 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=40 failed=0
+2026-06-25 23:47:45 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-25 23:47:46 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-25 23:47:46 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=4
+2026-06-25 23:47:46 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=4
+2026-06-25 23:47:46 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ар-птица images=4
+2026-06-25 23:47:46 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-25 23:47:46 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-25 23:47:46 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ебровское images=4
+2026-06-25 23:47:46 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=8 failed=0
+2026-06-25 23:57:50 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-25 23:57:50 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-25 23:57:50 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=4
+2026-06-25 23:57:51 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=4
+2026-06-25 23:57:51 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ар-птица images=4
+2026-06-25 23:57:51 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-25 23:57:51 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-25 23:57:51 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ебровское images=4
+2026-06-25 23:57:51 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=8 failed=0
+2026-06-26 00:01:35 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-26 00:01:35 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-26 00:01:35 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=4
+2026-06-26 00:01:35 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=4
+2026-06-26 00:01:35 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ар-птица images=4
+2026-06-26 00:01:35 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-26 00:01:35 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-26 00:01:35 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=∆ебровское images=4
+2026-06-26 00:01:35 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=8 failed=0
+2026-06-26 00:04:38 [INFO] app: LRUModelCache cleared Ч all models evicted from GPU
