@@ -5,10 +5,11 @@ from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
 
 
-class SpeciesNested(BaseModel):
+class SpeciesNested(BaseSchema):
     species_id: PyUUID = Field(validation_alias="id")
+    genus_id: PyUUID
     latin_name: str
-    russian_name: str
+    russian_name: str | None = None
 
 
 class FileNested(BaseModel):

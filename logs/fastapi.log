@@ -2034,3 +2034,630 @@ torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GP
 2026-06-27 01:17:36 [INFO] app: LRUModelCache cleared — all models evicted from GPU
 2026-06-27 01:32:47 [INFO] app: LRUModelCache cleared — all models evicted from GPU
 2026-06-27 02:01:15 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 02:23:25 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 02:44:31 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 02:45:34 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 02:46:11 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 03:08:41 [INFO] app: CUDA memory before model load: free=3317.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:43 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:08:44 [INFO] app: CUDA memory before model load: free=2343.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:44 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:08:45 [INFO] app: CUDA memory before model load: free=2245.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:45 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:08:45 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-27 03:08:46 [INFO] app: CUDA memory before model load: free=2147.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:46 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:08:46 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:08:47 [INFO] app: CUDA memory before model load: free=2071.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:47 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:08:47 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-27 03:08:47 [INFO] app: CUDA memory before model load: free=1973.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:48 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:08:48 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:08:48 [INFO] app: CUDA memory before model load: free=1875.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:49 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:08:49 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-27 03:08:49 [INFO] app: CUDA memory before model load: free=1777.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:50 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:08:50 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:08:50 [INFO] app: CUDA memory before model load: free=1701.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:51 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:08:51 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-27 03:08:51 [INFO] app: CUDA memory before model load: free=1603.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:52 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:08:52 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:08:52 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 12 images
+2026-06-27 03:08:52 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(12, 3, 224, 224)
+2026-06-27 03:08:53 [INFO] app: CUDA memory before model load: free=1505.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:53 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:08:53 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-27 03:08:53 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=12
+2026-06-27 03:08:53 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=12
+2026-06-27 03:08:53 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайская красавица images=12
+2026-06-27 03:08:54 [INFO] app: CUDA memory before model load: free=1391.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:54 [INFO] app: Evicting LRU model: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:08:54 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:08:54 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=12
+2026-06-27 03:08:54 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=12
+2026-06-27 03:08:54 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское румяное images=12
+2026-06-27 03:08:55 [INFO] app: CUDA memory before model load: free=1293.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:55 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:08:55 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-27 03:08:55 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=12
+2026-06-27 03:08:55 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=12
+2026-06-27 03:08:55 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское зимнее images=12
+2026-06-27 03:08:56 [INFO] app: CUDA memory before model load: free=1195.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:56 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:08:56 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:08:56 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=12
+2026-06-27 03:08:56 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=12
+2026-06-27 03:08:56 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Феникс Алтайский images=12
+2026-06-27 03:08:57 [INFO] app: CUDA memory before model load: free=1117.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:57 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:08:57 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-27 03:08:57 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=12
+2026-06-27 03:08:57 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=12
+2026-06-27 03:08:57 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Подарок садоводам images=12
+2026-06-27 03:08:58 [INFO] app: CUDA memory before model load: free=1021.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:58 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:08:58 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:08:58 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=12
+2026-06-27 03:08:58 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=12
+2026-06-27 03:08:58 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Сувенир Алтая images=12
+2026-06-27 03:08:59 [INFO] app: CUDA memory before model load: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:08:59 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:08:59 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-27 03:08:59 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=12
+2026-06-27 03:08:59 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=12
+2026-06-27 03:08:59 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Уральское наливное images=12
+2026-06-27 03:09:00 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:09:00 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:09:00 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:09:00 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=12
+2026-06-27 03:09:00 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=12
+2026-06-27 03:09:00 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Заветное images=12
+2026-06-27 03:09:01 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:09:01 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:09:01 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:09:01 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:09:01 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:09:01 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:09:01 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=12
+2026-06-27 03:09:02 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=12
+2026-06-27 03:09:02 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жар-птица images=12
+2026-06-27 03:09:02 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:09:02 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:09:02 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=12
+2026-06-27 03:09:02 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=12
+2026-06-27 03:09:02 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жебровское images=12
+2026-06-27 03:09:02 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=12 processed=120 failed=0
+2026-06-27 03:10:36 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:36 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:10:36 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:36 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:10:36 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:36 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:10:37 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:37 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:10:38 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:38 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:10:38 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:38 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:10:38 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:39 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 1/2)
+2026-06-27 03:10:39 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:40 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:10:40 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:40 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:10:40 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:40 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:10:40 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:41 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 1/2)
+2026-06-27 03:10:42 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:42 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:10:42 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:42 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:10:43 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:43 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:10:43 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:43 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 1/2)
+2026-06-27 03:10:44 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:44 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:10:45 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:45 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:10:45 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:45 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:10:45 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:45 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:10:46 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:46 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:10:46 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-27 03:10:47 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-27 03:10:47 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:47 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:10:47 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:47 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:10:47 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:48 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:10:48 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=4
+2026-06-27 03:10:48 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=4
+2026-06-27 03:10:48 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайская красавица images=4
+2026-06-27 03:10:48 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:49 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:10:49 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=4
+2026-06-27 03:10:49 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=4
+2026-06-27 03:10:49 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское румяное images=4
+2026-06-27 03:10:49 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:49 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:10:50 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:50 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:10:50 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:50 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 1/2)
+2026-06-27 03:10:50 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=4
+2026-06-27 03:10:50 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=4
+2026-06-27 03:10:50 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское зимнее images=4
+2026-06-27 03:10:51 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:51 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:10:51 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=4
+2026-06-27 03:10:51 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=4
+2026-06-27 03:10:51 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Феникс Алтайский images=4
+2026-06-27 03:10:52 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:52 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:10:52 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:52 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:10:52 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:52 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 1/2)
+2026-06-27 03:10:52 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=4
+2026-06-27 03:10:52 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=4
+2026-06-27 03:10:52 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Подарок садоводам images=4
+2026-06-27 03:10:53 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:53 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:10:53 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=4
+2026-06-27 03:10:53 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=4
+2026-06-27 03:10:53 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Сувенир Алтая images=4
+2026-06-27 03:10:54 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:54 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:10:54 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:54 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:10:54 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:54 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 1/2)
+2026-06-27 03:10:54 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=4
+2026-06-27 03:10:55 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=4
+2026-06-27 03:10:55 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Уральское наливное images=4
+2026-06-27 03:10:55 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:55 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:10:55 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=4
+2026-06-27 03:10:55 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=4
+2026-06-27 03:10:55 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Заветное images=4
+2026-06-27 03:10:56 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:56 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:10:56 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:56 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:10:56 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:57 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:10:57 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=4
+2026-06-27 03:10:57 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=4
+2026-06-27 03:10:57 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жар-птица images=4
+2026-06-27 03:10:57 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:10:58 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:10:58 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-27 03:10:58 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-27 03:10:58 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жебровское images=4
+2026-06-27 03:10:58 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=40 failed=0
+2026-06-27 03:20:10 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:10 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:20:10 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:10 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:20:11 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:11 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:20:12 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:12 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:20:12 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:12 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:20:13 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:13 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:20:13 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:13 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 1/2)
+2026-06-27 03:20:14 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:14 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:20:15 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:15 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:20:15 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:15 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:20:15 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:15 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 1/2)
+2026-06-27 03:20:16 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:16 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:20:17 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:17 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:20:17 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:17 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:20:17 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:18 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 1/2)
+2026-06-27 03:20:18 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:18 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:20:19 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:19 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:20:19 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:19 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:20:19 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:20 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:20:20 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:21 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:20:21 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 4 images
+2026-06-27 03:20:21 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(4, 3, 224, 224)
+2026-06-27 03:20:21 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:21 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:20:21 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:21 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:20:22 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:22 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:20:22 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=4
+2026-06-27 03:20:22 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=4
+2026-06-27 03:20:22 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайская красавица images=4
+2026-06-27 03:20:23 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:23 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:20:23 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=4
+2026-06-27 03:20:23 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=4
+2026-06-27 03:20:23 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское румяное images=4
+2026-06-27 03:20:24 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:24 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:20:24 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:24 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:20:24 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:24 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 1/2)
+2026-06-27 03:20:24 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=4
+2026-06-27 03:20:24 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=4
+2026-06-27 03:20:24 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское зимнее images=4
+2026-06-27 03:20:25 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:25 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:20:25 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=4
+2026-06-27 03:20:25 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=4
+2026-06-27 03:20:25 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Феникс Алтайский images=4
+2026-06-27 03:20:26 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:26 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:20:26 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:26 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:20:26 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:27 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 1/2)
+2026-06-27 03:20:27 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=4
+2026-06-27 03:20:27 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=4
+2026-06-27 03:20:27 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Подарок садоводам images=4
+2026-06-27 03:20:27 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:28 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:20:28 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=4
+2026-06-27 03:20:28 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=4
+2026-06-27 03:20:28 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Сувенир Алтая images=4
+2026-06-27 03:20:28 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:28 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:20:28 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:28 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:20:29 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:29 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 1/2)
+2026-06-27 03:20:29 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=4
+2026-06-27 03:20:29 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=4
+2026-06-27 03:20:29 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Уральское наливное images=4
+2026-06-27 03:20:29 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:30 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:20:30 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=4
+2026-06-27 03:20:30 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=4
+2026-06-27 03:20:30 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Заветное images=4
+2026-06-27 03:20:30 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:30 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:20:31 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:31 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:20:31 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:31 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:20:31 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=4
+2026-06-27 03:20:31 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=4
+2026-06-27 03:20:31 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жар-птица images=4
+2026-06-27 03:20:32 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:20:32 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:20:32 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=4
+2026-06-27 03:20:32 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=4
+2026-06-27 03:20:32 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жебровское images=4
+2026-06-27 03:20:32 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=4 processed=40 failed=0
+2026-06-27 03:25:03 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 03:25:19 [INFO] app: CUDA memory before model load: free=3317.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:22 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:25:22 [INFO] app: CUDA memory before model load: free=2343.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:23 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:25:23 [INFO] app: CUDA memory before model load: free=2245.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:24 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:25:24 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-27 03:25:25 [INFO] app: CUDA memory before model load: free=2147.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:25 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:25:25 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:25:26 [INFO] app: CUDA memory before model load: free=2071.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:26 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:25:26 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-27 03:25:27 [INFO] app: CUDA memory before model load: free=1973.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:27 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:25:27 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:25:28 [INFO] app: CUDA memory before model load: free=1875.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:28 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:25:28 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-27 03:25:29 [INFO] app: CUDA memory before model load: free=1777.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:29 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:25:29 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:25:30 [INFO] app: CUDA memory before model load: free=1701.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:30 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:25:30 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-27 03:25:31 [INFO] app: CUDA memory before model load: free=1603.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:32 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:25:32 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:25:32 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 3 images
+2026-06-27 03:25:32 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(3, 3, 224, 224)
+2026-06-27 03:25:33 [INFO] app: CUDA memory before model load: free=1505.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:33 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:25:33 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-27 03:25:33 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=3
+2026-06-27 03:25:33 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=3
+2026-06-27 03:25:33 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайская красавица images=3
+2026-06-27 03:25:34 [INFO] app: CUDA memory before model load: free=1391.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:34 [INFO] app: Evicting LRU model: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:25:34 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:25:34 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=3
+2026-06-27 03:25:34 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=3
+2026-06-27 03:25:34 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское румяное images=3
+2026-06-27 03:25:35 [INFO] app: CUDA memory before model load: free=1293.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:35 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:25:35 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-27 03:25:35 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=3
+2026-06-27 03:25:36 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=3
+2026-06-27 03:25:36 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское зимнее images=3
+2026-06-27 03:25:36 [INFO] app: CUDA memory before model load: free=1195.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:37 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:25:37 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:25:37 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=3
+2026-06-27 03:25:37 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=3
+2026-06-27 03:25:37 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Феникс Алтайский images=3
+2026-06-27 03:25:37 [INFO] app: CUDA memory before model load: free=1117.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:38 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:25:38 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-27 03:25:38 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=3
+2026-06-27 03:25:38 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=3
+2026-06-27 03:25:38 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Подарок садоводам images=3
+2026-06-27 03:25:39 [INFO] app: CUDA memory before model load: free=1021.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:39 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:25:39 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:25:39 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=3
+2026-06-27 03:25:39 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=3
+2026-06-27 03:25:39 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Сувенир Алтая images=3
+2026-06-27 03:25:40 [INFO] app: CUDA memory before model load: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:41 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:25:41 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-27 03:25:41 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=3
+2026-06-27 03:25:41 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=3
+2026-06-27 03:25:41 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Уральское наливное images=3
+2026-06-27 03:25:41 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:42 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:25:42 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:25:42 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=3
+2026-06-27 03:25:42 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=3
+2026-06-27 03:25:42 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Заветное images=3
+2026-06-27 03:25:43 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:43 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:25:43 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:43 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:25:43 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:44 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:25:44 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=3
+2026-06-27 03:25:44 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=3
+2026-06-27 03:25:44 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жар-птица images=3
+2026-06-27 03:25:44 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:25:45 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:25:45 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=3
+2026-06-27 03:25:45 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=3
+2026-06-27 03:25:45 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жебровское images=3
+2026-06-27 03:25:45 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=3 processed=30 failed=0
+2026-06-27 03:28:04 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 03:29:44 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 03:30:06 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 03:30:29 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 03:30:53 [INFO] app: CUDA memory before model load: free=3317.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:30:55 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:30:56 [INFO] app: CUDA memory before model load: free=2343.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:30:56 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:30:56 [INFO] app: CUDA memory before model load: free=2245.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:30:57 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:30:57 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-27 03:30:57 [INFO] app: CUDA memory before model load: free=2147.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:30:58 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:30:58 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:30:58 [INFO] app: CUDA memory before model load: free=2071.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:30:59 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:30:59 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-27 03:30:59 [INFO] app: CUDA memory before model load: free=1973.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:00 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:31:00 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:31:00 [INFO] app: CUDA memory before model load: free=1875.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:01 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:31:01 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-27 03:31:01 [INFO] app: CUDA memory before model load: free=1777.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:02 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:31:02 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:31:02 [INFO] app: CUDA memory before model load: free=1701.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:03 [INFO] app: Evicting LRU model: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:31:03 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 2/2)
+2026-06-27 03:31:03 [INFO] app: CUDA memory before model load: free=1603.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:04 [INFO] app: Evicting LRU model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:31:04 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:31:04 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 3 images
+2026-06-27 03:31:04 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(3, 3, 224, 224)
+2026-06-27 03:31:04 [INFO] app: CUDA memory before model load: free=1505.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:05 [INFO] app: Evicting LRU model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:31:05 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 2/2)
+2026-06-27 03:31:05 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=3
+2026-06-27 03:31:05 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=3
+2026-06-27 03:31:05 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайская красавица images=3
+2026-06-27 03:31:06 [INFO] app: CUDA memory before model load: free=1391.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:06 [INFO] app: Evicting LRU model: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:31:06 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:31:06 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=3
+2026-06-27 03:31:06 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=3
+2026-06-27 03:31:06 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское румяное images=3
+2026-06-27 03:31:07 [INFO] app: CUDA memory before model load: free=1293.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:07 [INFO] app: Evicting LRU model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:31:07 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 2/2)
+2026-06-27 03:31:07 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=3
+2026-06-27 03:31:07 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=3
+2026-06-27 03:31:07 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское зимнее images=3
+2026-06-27 03:31:08 [INFO] app: CUDA memory before model load: free=1195.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:08 [INFO] app: Evicting LRU model: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:31:08 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:31:08 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=3
+2026-06-27 03:31:08 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=3
+2026-06-27 03:31:08 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Феникс Алтайский images=3
+2026-06-27 03:31:09 [INFO] app: CUDA memory before model load: free=1117.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:09 [INFO] app: Evicting LRU model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:31:09 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 2/2)
+2026-06-27 03:31:09 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=3
+2026-06-27 03:31:09 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=3
+2026-06-27 03:31:09 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Подарок садоводам images=3
+2026-06-27 03:31:10 [INFO] app: CUDA memory before model load: free=1021.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:10 [INFO] app: Evicting LRU model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:31:10 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:31:10 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=3
+2026-06-27 03:31:10 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=3
+2026-06-27 03:31:10 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Сувенир Алтая images=3
+2026-06-27 03:31:11 [INFO] app: CUDA memory before model load: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:11 [INFO] app: Evicting LRU model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:31:11 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 2/2)
+2026-06-27 03:31:11 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=3
+2026-06-27 03:31:11 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=3
+2026-06-27 03:31:11 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Уральское наливное images=3
+2026-06-27 03:31:12 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:12 [INFO] app: Evicting LRU model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:31:12 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:31:12 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=3
+2026-06-27 03:31:12 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=3
+2026-06-27 03:31:12 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Заветное images=3
+2026-06-27 03:31:13 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:13 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:31:13 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:13 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:31:13 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:13 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:31:13 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=3
+2026-06-27 03:31:14 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=3
+2026-06-27 03:31:14 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жар-птица images=3
+2026-06-27 03:31:14 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:14 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:31:14 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=3
+2026-06-27 03:31:14 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=3
+2026-06-27 03:31:14 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жебровское images=3
+2026-06-27 03:31:14 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=3 processed=30 failed=0
+2026-06-27 03:31:36 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:36 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:31:36 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:36 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:31:36 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:36 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:31:37 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:37 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:31:38 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:38 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:31:38 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:38 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:31:38 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:38 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 1/2)
+2026-06-27 03:31:39 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:39 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:31:40 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:40 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:31:40 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:40 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:31:40 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:41 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 1/2)
+2026-06-27 03:31:41 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:42 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:31:42 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:42 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:31:42 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:42 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:31:42 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:43 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 1/2)
+2026-06-27 03:31:43 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:44 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:31:44 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:44 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:31:44 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:44 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:31:45 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:45 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:31:46 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:46 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:31:46 [INFO] app: Drain genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' 9 images
+2026-06-27 03:31:46 [INFO] app: Preprocessing completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' tensor_shape=(9, 3, 224, 224)
+2026-06-27 03:31:47 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:47 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c
+2026-06-27 03:31:47 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:47 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: a9c592ab-6600-4fb8-86aa-02cdbd929850
+2026-06-27 03:31:47 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:48 [INFO] app: Cached model: 771746fe-0650-40f7-8b2b-ac761b2fbbeb  (cache size: 1/2)
+2026-06-27 03:31:48 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb images=9
+2026-06-27 03:31:48 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=771746fe-0650-40f7-8b2b-ac761b2fbbeb probs_count=9
+2026-06-27 03:31:48 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайская красавица images=9
+2026-06-27 03:31:48 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:49 [INFO] app: Cached model: 8c478faa-046c-461c-a462-14b5f6928a16  (cache size: 2/2)
+2026-06-27 03:31:49 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 images=9
+2026-06-27 03:31:49 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8c478faa-046c-461c-a462-14b5f6928a16 probs_count=9
+2026-06-27 03:31:49 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское румяное images=9
+2026-06-27 03:31:49 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:49 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 771746fe-0650-40f7-8b2b-ac761b2fbbeb
+2026-06-27 03:31:49 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:49 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8c478faa-046c-461c-a462-14b5f6928a16
+2026-06-27 03:31:50 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:50 [INFO] app: Cached model: 251ff1cf-3c6c-4989-bd81-f95d20d0b447  (cache size: 1/2)
+2026-06-27 03:31:50 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 images=9
+2026-06-27 03:31:50 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=251ff1cf-3c6c-4989-bd81-f95d20d0b447 probs_count=9
+2026-06-27 03:31:50 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Алтайское зимнее images=9
+2026-06-27 03:31:51 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:51 [INFO] app: Cached model: 1145f653-13c4-41d2-9d0c-2514cb0e56b7  (cache size: 2/2)
+2026-06-27 03:31:51 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 images=9
+2026-06-27 03:31:51 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=1145f653-13c4-41d2-9d0c-2514cb0e56b7 probs_count=9
+2026-06-27 03:31:51 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Феникс Алтайский images=9
+2026-06-27 03:31:51 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:51 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 251ff1cf-3c6c-4989-bd81-f95d20d0b447
+2026-06-27 03:31:52 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:52 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 1145f653-13c4-41d2-9d0c-2514cb0e56b7
+2026-06-27 03:31:52 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:52 [INFO] app: Cached model: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e  (cache size: 1/2)
+2026-06-27 03:31:52 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e images=9
+2026-06-27 03:31:53 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8f180d1a-a5eb-443c-ba73-929ff7a83b7e probs_count=9
+2026-06-27 03:31:53 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Подарок садоводам images=9
+2026-06-27 03:31:53 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:54 [INFO] app: Cached model: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941  (cache size: 2/2)
+2026-06-27 03:31:54 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 images=9
+2026-06-27 03:31:54 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=8e6c2cf2-8a39-4e0f-9dca-7bec4520a941 probs_count=9
+2026-06-27 03:31:54 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Сувенир Алтая images=9
+2026-06-27 03:31:54 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:54 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8f180d1a-a5eb-443c-ba73-929ff7a83b7e
+2026-06-27 03:31:54 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:54 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: 8e6c2cf2-8a39-4e0f-9dca-7bec4520a941
+2026-06-27 03:31:55 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:55 [INFO] app: Cached model: c8fc277c-6074-4d4f-b911-c9925c8c300b  (cache size: 1/2)
+2026-06-27 03:31:55 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b images=9
+2026-06-27 03:31:55 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=c8fc277c-6074-4d4f-b911-c9925c8c300b probs_count=9
+2026-06-27 03:31:55 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Уральское наливное images=9
+2026-06-27 03:31:56 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:56 [INFO] app: Cached model: ee95fe6a-03a1-4b68-966b-0437b67bc4fa  (cache size: 2/2)
+2026-06-27 03:31:56 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa images=9
+2026-06-27 03:31:56 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=ee95fe6a-03a1-4b68-966b-0437b67bc4fa probs_count=9
+2026-06-27 03:31:56 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Заветное images=9
+2026-06-27 03:31:57 [INFO] app: CUDA memory before model load: free=749.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:57 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: c8fc277c-6074-4d4f-b911-c9925c8c300b
+2026-06-27 03:31:57 [INFO] app: CUDA memory after eviction: free=761.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:57 [WARNING] app: Not enough CUDA memory. Evicting LRU model before load: ee95fe6a-03a1-4b68-966b-0437b67bc4fa
+2026-06-27 03:31:57 [INFO] app: CUDA memory after eviction: free=923.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:58 [INFO] app: Cached model: bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c  (cache size: 1/2)
+2026-06-27 03:31:58 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c images=9
+2026-06-27 03:31:58 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=bd6d6b4c-4a93-4380-a67b-1c2c19a00c1c probs_count=9
+2026-06-27 03:31:58 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жар-птица images=9
+2026-06-27 03:31:58 [INFO] app: CUDA memory before model load: free=825.7 MiB total=4095.7 MiB required=781.7 MiB
+2026-06-27 03:31:59 [INFO] app: Cached model: a9c592ab-6600-4fb8-86aa-02cdbd929850  (cache size: 2/2)
+2026-06-27 03:31:59 [INFO] app: Inference started genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 images=9
+2026-06-27 03:31:59 [INFO] app: Inference completed genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=a9c592ab-6600-4fb8-86aa-02cdbd929850 probs_count=9
+2026-06-27 03:31:59 [INFO] app: Results sent genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' model=Жебровское images=9
+2026-06-27 03:31:59 [INFO] app: Complete genus='275dd2d2-54e8-45aa-8674-2cfce26aca0f' total_received=9 processed=90 failed=0

@@ -95,3 +95,12 @@ class LeafArtifactResponse(BaseModel):
     artifact_type: str
     created_by_model: NeuralModelNested | None
     created_at: datetime
+
+
+class LeafPlantAssignment(BaseModel):
+    leaf_id: PyUUID
+    plant_id: PyUUID
+
+
+class LeafPlantAssignmentBatch(BaseModel):
+    assignments: list[LeafPlantAssignment]

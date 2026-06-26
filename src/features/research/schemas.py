@@ -2,6 +2,7 @@ from datetime import date, datetime
 from typing import Annotated
 
 from pydantic import BaseModel, Field
+from src.features.plants.schemas import PlantResponse
 from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
 
@@ -23,6 +24,7 @@ class ResearchCreate(BaseModel):
     end_date: date | None = None
     created_by_researcher_id: PyUUID | None = None
     researcher_ids: list[PyUUID] = Field(default_factory=list)
+    plant_ids: list[PyUUID] = Field(default_factory=list)
 
 
 class ResearchUpdate(BaseModel):
@@ -35,6 +37,7 @@ class ResearchUpdate(BaseModel):
     start_date: date | None = None
     end_date: date | None = None
     researcher_ids: list[PyUUID] | None = None
+    plant_ids: list[PyUUID] | None = None
 
 
 class ResearchResponse(BaseSchema):
@@ -52,6 +55,7 @@ class ResearchResponse(BaseSchema):
     )
     created_at: datetime
     updated_at: datetime
+    plants: list[PlantResponse] = Field(default_factory=list)
 
 
 class ResearchAssignResearchers(BaseModel):

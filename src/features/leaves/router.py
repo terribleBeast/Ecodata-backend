@@ -6,6 +6,7 @@ from src.features.leaves.schemas import (
     LeafArtifactResponse,
     LeafArtifactUpdate,
     LeafCreate,
+    LeafPlantAssignmentBatch,
     LeafResponse,
     LeafUpdate,
 )
@@ -38,6 +39,14 @@ async def leaf_get(
     service: Annotated[LeafService, Depends(get_leaf_service)],
 ):
     return await service.get_one(id)
+
+
+@leaves_router.put("/plant", status_code=204)
+async def leaf_assign_plants(
+    body: LeafPlantAssignmentBatch,
+    service: Annotated[LeafService, Depends(get_leaf_service)],
+):
+    await service.assign_plants(body)
 
 
 @leaves_router.post("/", response_model=PyUUID)

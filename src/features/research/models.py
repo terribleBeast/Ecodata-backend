@@ -84,6 +84,16 @@ class Research(BaseSqlModel):
         lazy="selectin",
         viewonly=True,
     )
+    plant_links: Mapped[list["ResearchPlantAssociation"]] = relationship(
+        back_populates="research",
+        cascade="all, delete-orphan",
+    )
+
+    plants: Mapped[list["Plant"]] = relationship(
+        secondary="research_plant_association",
+        lazy="selectin",
+        viewonly=True,
+    )
 
 
 class ResearcherResearchAssociation(BaseSqlModel):
@@ -110,4 +120,25 @@ class ResearcherResearchAssociation(BaseSqlModel):
     research: Mapped["Research"] = relationship(back_populates="researchers")
 
 
-from src.features.researchers.models import Researcher  # noqa: E402, F401
+class ResearchPlantAssociation(BaseSqlModel):
+    __tablename__ = "research_plant_association"
+
+    research_id: Mapped[PyUUID] = mapped_column(
+        UUID,
+        ForeignKey("researches.research_id", ondelete="CASCADE", onupdate="CASCADE"),
+        primary_key=True,
+    )
+
+    plant_id: Mapped[PyUUID] = mapped_column(
+        UUID,
+        ForeignKey("plants.plant_id", ondelete="CASCADE", onupdate="CASCADE"),
+        primary_key=True,
+    )
+
+    research: Mapped["Research"] = relationship(back_populates="plant_links")
+
+
+from src.features.plants.models import Plant  # noqa: E402, F401
+from src.features.researchers.models import (
+    Researcher,  # noqa: E402, F401  # noqa: E402, F401
+)
