@@ -76,7 +76,7 @@ async def lifespan(app: FastAPI):
     inference_executor.shutdown(wait=True)
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, title="EcoData")
 
 app.add_middleware(AuthMiddleware)
 

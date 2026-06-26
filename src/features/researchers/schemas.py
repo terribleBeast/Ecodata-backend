@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Annotated
 
-from pydantic import BaseModel, Field
+from pydantic import AliasChoices, BaseModel, Field
 from src.shared.schemas import BaseSchema
 from src.shared.types import PyUUID
 
@@ -47,7 +47,7 @@ class ResearcherUpdate(BaseModel):
 
 
 class ResearcherResponse(BaseSchema):
-    researcher_id: PyUUID = Field(validation_alias="id")
+    id: PyUUID = Field(validation_alias=AliasChoices("id", "researcher_id"))
     email: str
     is_active: bool
     first_name: str
