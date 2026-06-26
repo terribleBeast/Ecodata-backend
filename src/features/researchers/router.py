@@ -15,14 +15,12 @@ router = APIRouter(prefix="/researchers", tags=["researchers"])
 @router.get("/", response_model=list[ResearcherResponse])
 async def researcher_list(
     service: Annotated[ResearcherService, Depends(get_researcher_service)],
-    ids: list[PyUUID] = Query(None),
+    ids: list[PyUUID] | None = Query(None),
 ):
-    print(ids)
     if ids:
-        result = await service.get_by_ids(ids)
-    result = await service.get_all()
-    print(result)
-    return result
+        return await service.get_by_ids(ids)
+
+    return await service.get_all()
 
 
 @router.get("/{id}", response_model=ResearcherResponse)

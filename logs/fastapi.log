@@ -2033,3 +2033,4 @@ torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 98.00 MiB (GP
 2026-06-27 01:17:25 [INFO] app: LRUModelCache cleared — all models evicted from GPU
 2026-06-27 01:17:36 [INFO] app: LRUModelCache cleared — all models evicted from GPU
 2026-06-27 01:32:47 [INFO] app: LRUModelCache cleared — all models evicted from GPU
+2026-06-27 02:01:15 [INFO] app: LRUModelCache cleared — all models evicted from GPU
